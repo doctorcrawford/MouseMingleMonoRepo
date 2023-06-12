@@ -39,4 +39,26 @@ public class RodentsController : Controller
     }
     return thisRodent;
   }
+
+  [HttpPost]
+  public async Task<ActionResult<Rodent>> Post(Rodent rodent)
+  {
+    _db.Rodents.Add(rodent);
+    await _db.SaveChangesAsync();
+    return CreatedAtAction("GetRodent", new { id = rodent.RodentId }, rodent);
+  }
+  
+  [HttpDelete("{id")]
+  public async Task<IActionResult> DeleteInterest(int id)
+  {
+    Interest interest = await _db.Interests.FindAsync(id);
+    if (interest == null)
+    {
+      return NotFound();
+    }
+    _db.Interests.Remove(interest);
+    await _db.SaveChangesAsync();
+
+    return NoContent();
+  }
 }
