@@ -1,0 +1,38 @@
+@{
+  ViewData["Title"] = "Search";
+}
+
+@using MouseMingleClient.Models;
+
+<h3>Search for Matches: </h3>
+
+@using (Html.BeginForm())
+{
+
+  <label for="category">Choose a parameter:</label>
+  <select name="category" , id="category">
+    <option value="name">Name</option>
+    <option value="species">Species</option>
+    <option value="location">Location</option>
+    <option value="minimumAge">Minimum Age</option> 
+  
+  </select>
+
+  <label>Enter search text:</label>
+  <input type="text" name="searchParam">
+  <input type="submit" value="Search" class="btn btn-primary" />
+}
+
+<!-- could expand above with age range instead of min -->
+
+@if (@Model.Count == 0)
+{
+  <p>No Search Results Yet</p>
+}
+  <ol>
+    @foreach (Rodent rodent in Model)
+    {
+      <li><strong>@rodent.Name</strong> the @rodent.Species | <a href="/Rodents/Details/@(rodent.RodentId)">View Details</a>
+      </li>
+    }
+  </ol>

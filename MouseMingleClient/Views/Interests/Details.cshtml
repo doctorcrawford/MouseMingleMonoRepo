@@ -1,0 +1,19 @@
+@{
+    ViewData["Title"] = "Interest Details";
+}
+
+<h2> Deets and Stats for @Model.Description </h2>
+
+<p> X % of users are interested in this</p>
+
+<!-- if user interest == true -->
+<p> You are interested in this </p>
+
+<!-- else -->
+<p> You aren't interested in this yet</p>
+
+<hr />
+
+<p>@Html.ActionLink("Submit an Interest", "Create")</p>
+<p>@Html.ActionLink("Back to Interests List", "Index")</p>
+<p>@Html.ActionLink("See All Rodents", "Index", "Rodents")</p>

@@ -1,0 +1,15 @@
+@{
+    ViewData["Title"] = "Interests";
+}
+
+@if (@Model.Count == 0)
+{
+  <p>No Results Yet</p>
+}
+  <ol>
+    @foreach (Interest interest in Model)
+    {
+      <li><strong>@interest.Description</strong> <a href="/Interest/Details/@(interest.InterestId)">View Stats</a>
+      </li>
+    }
+  </ol>
