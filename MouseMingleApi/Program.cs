@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.RegisterServices();
 
-builder.Services.AddDbContext<MouseMingleContext>(
+builder.Services.AddDbContext<MouseMingleApiContext>(
                   dbContextOptions => dbContextOptions
                     .UseMySql(
                       builder.Configuration["ConnectionStrings:DefaultConnection"],
