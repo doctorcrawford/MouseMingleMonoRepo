@@ -86,6 +86,9 @@ public class ApiHelper
   //--------------------------------------------- 
   // ^^^^ Rodent Logic ^^^^
   //--------------------------------------------- 
+
+
+  //--------------------------------------------- 
   // vvvv Interest Logic vvvv
   //---------------------------------------------
 
@@ -100,9 +103,48 @@ public class ApiHelper
     return response.Content;
   }
 
+  public static async Task<string> Get(int id)
+  {
+    var client = new RestClient(HOSTNAME);
+    var request = new RestRequest($"api/interests/{id}", Method.Get);
+    var response = await client.GetAsync(request);
+
+    return response.Content;
+  }
+
+  // Post new interest
+    public static async void Post (string newInterest)
+  {
+    var client = new RestClient(HOSTNAME);
+    var request = new RestRequest($"api/interests/", Method.Post);
+    request.AddHeader("Content-Type", "application/json");
+    request.AddJsonBody(newInterest);
+
+    await client.PostAsync(request);
+  }
+
+  // PUT. Updates existing interest
+  public static async void Put(int id, string newInterest)
+  {
+    RestClient client = new RestClient(HOSTNAME);
+    RestRequest request = new RestRequest($"api/interest/{id}", Method.Put);
+    request.AddHeader("Content-Type", "application/json");
+    request.AddJsonBody(newInterest);
+    await client.PutAsync(request);
+  }
+  public static async void Delete(int id)
+  {
+    RestClient client = new RestClient(HOSTNAME);
+    RestRequest request = new RestRequest($"api/interests/{id}", Method.Delete);
+    request.AddHeader("Content-Type", "application/json");
+    await client.DeleteAsync(request);
+  }
+
   //--------------------------------------------- 
-  // vvvv Interest Logic ^^^^
+  // ^^^^ Interest Logic ^^^^
   //---------------------------------------------
+
+
   //---------------------------------------------
   // vvvv Account/User Logic vvvv
   //---------------------------------------------
