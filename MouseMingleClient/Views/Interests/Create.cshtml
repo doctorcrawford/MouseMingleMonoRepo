@@ -1,0 +1,23 @@
+@{
+    ViewData["Title"] = "Add Interests";
+}
+
+@model MouseMingleClient.Models.Interest
+
+
+<h3> Add a new Interest </h3>
+
+<h4>Have an interest we missed? Add it to the list!</h4>
+
+@using (Html.BeginForm())
+{
+  <p>@Html.LabelFor(model => model.Description): 
+  @Html.TextBoxFor(model => model.Description)</p>
+
+  <input type="submit" value="Add Interest">
+}
+
+
+<hr />
+<p>@Html.ActionLink("Back to Interests List", "Index")</p>
+<p>@Html.ActionLink("See All Rodents", "Index", "Rodents")</p>
