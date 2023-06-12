@@ -1,0 +1,31 @@
+<!-- Delete my account -->
+@{
+  Layout = "_Layout";
+}
+
+@using MouseMingleClient.ViewModels
+
+@model DeleteViewModel
+
+<h2>Delete your account</h2>
+<hr />
+
+@if(!ViewData.ModelState.IsValid)
+{
+  @Html.ValidationSummary("Please fix the following error(s) and then resubmit the form:") 
+}
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(m => m.Email) 
+  @Html.TextBoxFor(m => m.Email)
+
+  @Html.LabelFor(m => m.Password)
+  @Html.EditorFor(m => m.Password)
+
+  <input type="submit" value="Delete" class="btn btn-warning"/>
+}
+
+<p>@Html.ActionLink("Register for an account", "Register")</p>
+<p>@Html.ActionLink("Back to accounts page", "Index")</p>
+
