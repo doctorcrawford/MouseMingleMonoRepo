@@ -88,6 +88,18 @@ public class ApiHelper
   //--------------------------------------------- 
   // vvvv Interest Logic vvvv
   //---------------------------------------------
+
+  // Get all Interests
+
+  public static async Task<string> GetAllInterestsAsync()
+  {
+    var client = new RestClient(HOSTNAME);
+    var request = new RestRequest($"api/interests", Method.Get);
+    var response = await client.GetAsync(request);
+
+    return response.Content;
+  }
+
   //--------------------------------------------- 
   // vvvv Interest Logic ^^^^
   //---------------------------------------------
