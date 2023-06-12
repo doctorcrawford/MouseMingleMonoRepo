@@ -1,0 +1,30 @@
+@{
+  ViewData["Title"] = $"Edit {Model.Name}";
+}
+
+@model MouseMingleClient.Models.Rodent
+
+<h4>Edit @Model.Name</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.RodentId)
+
+  @Html.LabelFor(model => model.Name)
+  @Html.TextBoxFor(model => model.Name, new { @Value = Model.Name})
+  <br>
+  @Html.LabelFor(model => model.Species)
+  @Html.TextBoxFor(model => model.Species, new { @Value = Model.Species})
+  <br>
+  @Html.LabelFor(model => model.Age)
+  @Html.TextBoxFor(model => model.Age, new { Value = Model.Age})
+  <br>
+  @Html.LabelFor(model => model.Location)
+  @Html.TextBoxFor(model => model.Location, new { Value = Model.Location})
+  <br>
+  <br>
+  <input type="submit" value="Save changes" class="btn btn-primary"/>
+}
+
+<br>
+<p>@Html.ActionLink("Back to details", "Details", new {id = @Model.RodentId})</p>
