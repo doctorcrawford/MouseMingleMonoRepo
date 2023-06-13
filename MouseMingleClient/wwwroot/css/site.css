@@ -1,3 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;400;800&family=Palette+Mosaic&display=swap');
+
+:root {
+  --main-light: #FAFDF6;
+  --light1: #E3B505;
+  --dark2: #95190C;
+  --light2: #2E86AB;
+  --font: #191919;
+  --main-font: "Inconsolata", Helvetica, sans-serif;
+  --header-font-fam: "Palette Mosaic", Helvetica, sans-serif;
+}
+
+.nav-logo {
+  width: 10%;
+}
+
+body {
+  background-color: var(--main-light);
+}
+
+h1 {
+  font-family: var(--header-font-fam);
+  color: var(--font)
+}
+
 html {
   font-size: 14px;
 }

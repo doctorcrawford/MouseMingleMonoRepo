@@ -15,6 +15,7 @@ public class Rodent
   public string Name { get; set; }
   public int Age { get; set; }
   public string Location { get; set; }
+  public List<RodentInterest> RodentInterests { get; set; }
 
   public static List<Rodent> GetAll()
   {
@@ -35,6 +36,13 @@ public class Rodent
     var jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
     var rodent = JsonConvert.DeserializeObject<Rodent>(jsonResponse.ToString());
 
+// Get RodentInterests
+    var apiCallTaskRodentInterests = ApiHelper.GetRodentInterest(id);
+    var resultRodentInterest = apiCallTaskRodentInterests.Result;
+    JArray jsonResponseRodentInterests = JsonConvert.DeserializeObject<JArray>(resultRodentInterest);
+    List<RodentInterest> rodentInterests = JsonConvert.DeserializeObject<List<RodentInterest>>(jsonResponseRodentInterests.ToString());
+
+    rodent.RodentInterests = rodentInterests;
     return rodent;
   }
 
