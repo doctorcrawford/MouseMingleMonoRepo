@@ -39,6 +39,15 @@ public class RodentsController : Controller
     return thisRodent;
   }
 
+  // Get RodentInterests at Rodent
+  [HttpGet("{id}/rodentinterests")]
+  public async Task<ActionResult<IEnumerable<RodentInterest>>> GetRodentInterest(int id)
+  {
+    return await _db.RodentInterests
+                    .Where(e => e.RodentId == id)
+                    .ToListAsync();
+  }
+
   [HttpPost]
   public async Task<ActionResult<Rodent>> Post(Rodent rodent)
   {
@@ -47,18 +56,50 @@ public class RodentsController : Controller
     return CreatedAtAction("GetRodent", new { id = rodent.RodentId }, rodent);
   }
   
-  [HttpDelete("{id")]
+  [HttpDelete("{id}")]
   public async Task<IActionResult> DeleteInterest(int id)
   {
-    Interest interest = await _db.Interests.FindAsync(id);
-    if (interest == null)
+    Rodent rodent = await _db.Rodents.FindAsync(id);
+    if (rodent == null)
     {
       return NotFound();
     }
-    _db.Interests.Remove(interest);
+    _db.Rodents.Remove(rodent);
     await _db.SaveChangesAsync();
 
     return NoContent();
+  }
+
+  [HttpPut("{id}")]
+  public async Task<IActionResult> Put(int id, Rodent rodent)
+  {
+    if (id != rodent.RodentId)
+    {
+      return BadRequest();
+    }
+    _db.Rodents.Update(rodent);
+
+    try
+    {
+      await _db.SaveChangesAsync();
+    }
+    catch (DbUpdateConcurrencyException)
+    {
+      if (!RodentExists(id))
+      {
+        return NotFound();
+      }
+      else
+      {
+        throw;
+      }
+    }
+    return NoContent();
+  }
+
+  private bool RodentExists(int id)
+  {
+    return _db.Rodents.Any(e => e.RodentId == id);
   }
 }
 
