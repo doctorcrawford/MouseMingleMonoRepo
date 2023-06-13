@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using RestSharp;
+using MouseMingleClient.ViewModels;
 
 namespace MouseMingleClient.Models;
 
@@ -160,13 +161,15 @@ public class ApiHelper
     await client.PostAsync(request);
   }
 
-  public static async void LoginUserAsync(string user)
+  public static async Task<string> LoginUserAsync(string user)
   {
     var client = new RestClient(HOSTNAME);
-    var request = new RestRequest($"api/accounts/", Method.Post);
+    var request = new RestRequest($"api/v1/authenticate/login", Method.Post);
     request.AddHeader("Content-Type", "application.json");
     request.AddJsonBody(user);
 
-    await client.PostAsync(request);
+    var response = await client.PostAsync(request);
+    
+    return response.Content;
   }
 }

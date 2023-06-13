@@ -12,7 +12,6 @@ namespace MouseMingleClient.Models;
 
 public class ApplicationUser : IdentityUser
 {
-
   public static void Register(RegisterViewModel newUser)
   {
     var jsonNewUser = JsonConvert.SerializeObject(newUser);
@@ -22,6 +21,10 @@ public class ApplicationUser : IdentityUser
   public static void Login(LoginViewModel user)
   {
     var jsonUser = JsonConvert.SerializeObject(user);
-    ApiHelper.LoginUserAsync(jsonUser);
+    var response = ApiHelper.LoginUserAsync(jsonUser);
+    Console.WriteLine("Hummus");
+    Console.WriteLine("Hummus");
+    Console.WriteLine("Hummus");
+    Console.WriteLine(response);
   }
 }
