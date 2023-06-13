@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
 
-
 namespace MouseMingleApi.Controllers;
 
 [ApiController]
@@ -62,3 +61,5 @@ public class RodentsController : Controller
     return NoContent();
   }
 }
+
+
