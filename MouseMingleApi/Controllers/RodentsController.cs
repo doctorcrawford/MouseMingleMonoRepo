@@ -48,15 +48,15 @@ public class RodentsController : Controller
     return CreatedAtAction("GetRodent", new { id = rodent.RodentId }, rodent);
   }
   
-  [HttpDelete("{id")]
+  [HttpDelete("{id}")]
   public async Task<IActionResult> DeleteInterest(int id)
   {
-    Interest interest = await _db.Interests.FindAsync(id);
-    if (interest == null)
+    Rodent rodent = await _db.Rodents.FindAsync(id);
+    if (rodent == null)
     {
       return NotFound();
     }
-    _db.Interests.Remove(interest);
+    _db.Rodents.Remove(rodent);
     await _db.SaveChangesAsync();
 
     return NoContent();
