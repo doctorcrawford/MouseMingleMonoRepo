@@ -7,9 +7,8 @@
 @using MouseMingleClient.Models
 @model MouseMingleClient.Models.Rodent
 
-<h1> All About @Model.Name: </h1>
+<h3> All About @Model.Name: </h3>
 
-@* <img src="wwwroot/img/profPic" alt=$"Profile Picture for {Model.Name}"> *@
 
 <p>Age: @Model.Age</p>
 <p>Species: @Model.Species</p>
@@ -22,3 +21,8 @@
 <p>@Html.ActionLink("Back to All Rodents", "Index")</p>
 <p>@Html.ActionLink("Your Profile", "RodentProfile")</p>
 <p>(link) Make A Match? (Y/N)</p>
+
+
+<p>@Html.ActionLink("Edit details", "Edit", new { id = @Model.RodentId}) </p>
+<p>@Html.ActionLink("Delete Rodent", "Delete", new { id = @Model.RodentId})</p>
+

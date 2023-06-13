@@ -37,6 +37,13 @@ public class InterestsController : Controller
     return View(interest);
   }
 
+  [HttpPost]
+  public ActionResult Edit(Interest interest)
+  {
+    Interest.Put(interest);
+    return RedirectToAction("Details", new { id = interest.InterestId});
+  }
+
   public ActionResult Delete(int id)
   {
     Interest interest = Interest.GetDetails(id);

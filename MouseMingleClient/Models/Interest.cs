@@ -37,7 +37,7 @@ public class Interest
     ApiHelper.PostRodentAsync(jsonInterest);
   }
 
-    public static void Put(Interest interest)
+  public static void Put(Interest interest)
   {
     string jsonInterest = JsonConvert.SerializeObject(interest);
     ApiHelper.Put(interest.InterestId, jsonInterest);
