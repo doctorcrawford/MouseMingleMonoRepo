@@ -15,16 +15,16 @@ public class MouseMingleApiContext : DbContext
   {
     builder.Entity<Rodent>()
       .HasData(
-        new Rodent { RodentId = 1, Species = "Rat", Name = "Scorpo Fangoria", Age = 43, Location = "Fishermans Warf No.3", ProfilePic = "./wwwroot/imgs/scorpo.gif" },
-        new Rodent { RodentId = 2, Species = "Rat", Name = "Cadder Jenks", Age = 33, Location = "In a van down by the river", ProfilePic ="./wwwroot/imgs/cadder.gif" },
-        new Rodent { RodentId = 3, Species = "Mouse", Name = "Flippy Twitch", Age = 18, Location = "hole", ProfilePic = "./wwwroot/imgs/flippy.gif" },
-        new Rodent { RodentId = 4, Species = "Mouse", Name = "Patty Valentine", Age = 23, Location = "hole", ProfilePic = "./wwwroot/imgs/patty.gif" },
-        new Rodent { RodentId = 5, Species = "Naked Molerat", Name = "Alfred Bello Twitch", Age = 58, Location = "hole", ProfilePic = "./wwwroot/imgs/alfred.gif" },
-        new Rodent { RodentId = 6, Species = "Ferret", Name = "Rubin Carter", Age = 19, Location = "hole", ProfilePic = "./wwwroot/imgs/rubin.gif" },
-        new Rodent { RodentId = 7, Species = "Capybara", Name = "Arthur Dexter Bradley", Age = 28, Location = "hole", ProfilePic = "./wwwroot/imgs/arthur.gif" },
-        new Rodent { RodentId = 8, Species = "Guinea Pig", Name = "Squanker Classic", Age = 29, Location = "hole", ProfilePic = "./wwwroot/imgs/squanker.gif" },
-        new Rodent { RodentId = 9, Species = "Myomorpha", Name = "Big Daddy Crawford", Age = 88, Location = "hole", ProfilePic = "./wwwroot/imgs/daddy.gif" },
-        new Rodent { RodentId = 10, Species = "Mus Musculus", Name = "House Mouse", Age = 35, Location = "hole", ProfilePic = "./wwwroot/imgs/housemouse.gif" }
+        new Rodent { RodentId = 1, Species = "Rat", Name = "Scorpo Fangoria", Age = 43, Location = "Fishermans Warf No.3", ProfilePic = "/img/scorpo.gif" },
+        new Rodent { RodentId = 2, Species = "Rat", Name = "Cadder Jenks", Age = 33, Location = "In a van down by the river", ProfilePic ="/img/cadder.gif" },
+        new Rodent { RodentId = 3, Species = "Mouse", Name = "Flippy Twitch", Age = 18, Location = "hole", ProfilePic = "/img/flippy.gif" },
+        new Rodent { RodentId = 4, Species = "Mouse", Name = "Patty Valentine", Age = 23, Location = "hole", ProfilePic = "/img/patty.gif" },
+        new Rodent { RodentId = 5, Species = "Naked Molerat", Name = "Alfred Bello Twitch", Age = 58, Location = "hole", ProfilePic = "/img/alfred.gif" },
+        new Rodent { RodentId = 6, Species = "Ferret", Name = "Rubin Carter", Age = 19, Location = "hole", ProfilePic = "/img/rubin.gif" },
+        new Rodent { RodentId = 7, Species = "Capybara", Name = "Arthur Dexter Bradley", Age = 28, Location = "hole", ProfilePic = "/img/arthur.gif" },
+        new Rodent { RodentId = 8, Species = "Guinea Pig", Name = "Squanker Classic", Age = 29, Location = "hole", ProfilePic = "/img/squanker.gif" },
+        new Rodent { RodentId = 9, Species = "Myomorpha", Name = "Big Daddy Crawford", Age = 88, Location = "hole", ProfilePic = "/img/daddy.gif" },
+        new Rodent { RodentId = 10, Species = "Mus Musculus", Name = "House Mouse", Age = 35, Location = "hole", ProfilePic = "/img/housemouse.gif" }
       );
     builder.Entity<Interest>()
       .HasData(
