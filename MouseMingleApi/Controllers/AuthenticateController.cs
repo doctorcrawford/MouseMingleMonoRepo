@@ -48,11 +48,13 @@ public class AuthenticateController : Controller
       }
 
       var token = GetToken(authClaims);
-
+      // await UserManager.SetAuthenticationToken
+      
       return Ok(new
       {
         token = new JwtSecurityTokenHandler().WriteToken(token),
         expiration = token.ValidTo
+        
       });
     }
 
@@ -108,4 +110,9 @@ public class AuthenticateController : Controller
 
     return token;
   }
+
+  // public void SetCookie (string key, string value)
+  // {
+  //   Response.Cookies.Append(key, value);
+  // }
 }
