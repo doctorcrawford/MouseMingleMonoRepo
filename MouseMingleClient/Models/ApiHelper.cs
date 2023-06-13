@@ -151,21 +151,12 @@ public class ApiHelper
   // vvvv RodentInterest Logic vvvv
   //---------------------------------------------
 
-    // Get All RodentInterests
-  public static async Task<string> GetAllRodentInterests()
-  {
-    var client = new RestClient(HOSTNAME);
-    var request = new RestRequest($"api/interests", Method.Get);
-    var response = await client.GetAsync(request);
 
-    return response.Content;
-  }
-
-    // Get RodentInterest
+    // Get RodentInterest at Rodent
   public static async Task<string> GetRodentInterest(int id)
   {
     var client = new RestClient(HOSTNAME);
-    var request = new RestRequest($"api/rodentinterests", Method.Get);
+    var request = new RestRequest($"api/v1/rodent/{id}/rodentinterests", Method.Get);
     var response = await client.GetAsync(request);
 
     return response.Content;
