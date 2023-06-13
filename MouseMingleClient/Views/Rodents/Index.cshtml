@@ -6,6 +6,7 @@
 
 @using MouseMingleClient.Models;
 
+
 @if (@Model.Count == 0)
 {
   <p>No Rodents Yet</p>
@@ -16,11 +17,17 @@
   @foreach (Rodent rodent in Model)
   {
     <div class="rodent-profile-card">
-    <h2><strong>@rodent.Name</strong></h2>
-    <p>the @rodent.Species</p>
-    <p><a href="/Rodents/Details/@(rodent.RodentId)">View Details</a></p>
-    <img src=@rodent.ProfilePic />
-    <p><span>Y</span>/<span>N</span></p>
-  </div>
+      <h2><strong>@rodent.Name</strong></h2>
+      <p>the @rodent.Species</p>
+      <p>Up Votes: @rodent.UpVote</p>
+      <p><a href="/Rodents/Details/@(rodent.RodentId)">View Details</a></p>
+      <img src=@rodent.ProfilePic />
+      @using (Html.BeginForm("AddUpVote", "Rodents", FormMethod.Post))
+      {
+        @Html.Hidden("Id", rodent.RodentId)
+        <button class="upvote" type="submit" name="vote" value="yes">Yes</button>
+        <button class="upvote" type="submit" name="vote" value="no">No</button>
+      }
+    </div>
   }
 </div>
