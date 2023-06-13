@@ -5,4 +5,13 @@
 @model MouseMingleClient.Models.Rodent
 
 <h4>Are you sure you want to delete @Model.Name?</h4>
+
+@using (Html.BeginForm())
+{
+  <input type="submit" value="Delete" class="btn btn-primary"/>
+}
+
+
+
+<hr />
 @Html.ActionLink("Back to details", "Details", new { id = @Model.RodentId})

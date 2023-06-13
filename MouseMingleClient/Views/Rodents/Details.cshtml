@@ -1,0 +1,26 @@
+<!-- a specific rodent -->
+
+@{
+    ViewData["Title"] = "Juicy Details";
+}
+
+@using MouseMingleClient.Models
+@model MouseMingleClient.Models.Rodent
+
+<h3> All About @Model.Name: </h3>
+
+
+<p>Age: @Model.Age</p>
+<p>Species: @Model.Species</p>
+<p>Location: @Model.Location</p>
+
+
+<hr />
+
+
+<p>@Html.ActionLink("Back to All Rodents", "Index")</p>
+<p>@Html.ActionLink("Your Profile", "RodentProfile")</p>
+<p>(link) Make A Match? (Y/N)</p>
+
+<p>@Html.ActionLink("Edit details", "Edit", new { id = @Model.RodentId}) </p>
+<p>@Html.ActionLink("Delete Rodent", "Delete", new { id = @Model.RodentId})</p>
