@@ -65,4 +65,20 @@ public class RodentsController : Controller
     Rodent.Delete(id);
     return RedirectToAction("Index");
   }
+
+  [HttpPost]
+  public ActionResult AddUpVote(int id, string vote)
+  {
+    Rodent rodent = Rodent.GetDetails(id);
+    if (vote == "yes")
+    {
+      rodent.UpVote++;
+    }
+    else if (vote == "no")
+    {
+      rodent.UpVote--;
+    }
+    Rodent.Put(rodent);
+    return RedirectToAction("Index");
+  }
 }
