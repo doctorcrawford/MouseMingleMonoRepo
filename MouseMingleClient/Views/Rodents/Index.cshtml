@@ -25,8 +25,8 @@
       @using (Html.BeginForm("AddUpVote", "Rodents", FormMethod.Post))
       {
         @Html.Hidden("Id", rodent.RodentId)
-        <button class="upvote" type="submit" name="vote" value="yes">Yes</button>
-        <button class="upvote" type="submit" name="vote" value="no">No</button>
+        <button class="upvote yes" type="submit" name="vote" value="yes">Yes</button>
+        <button class="upvote no" type="submit" name="vote" value="no">No</button>
       }
     </div>
   }

@@ -59,7 +59,7 @@ html {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  width: 30vw;
+  width: 300px;
   background-color: var(--light1);
   align-items: center;
   border-radius: 20px;
@@ -70,10 +70,12 @@ html {
 .rodent-profile-card img {
   width: 80%;
   border-radius: 50%;
+  border: 2px double var(--dark2);
 }
 
 .rodent-profile-card h2 {
   font-family: var(--header-font-fam);
+  font-size: 1.5em;
 }
 
 .rodent-profile-card p {
@@ -89,6 +91,17 @@ html {
   color: var(--dark2);
 }
 
+.upvote {
+  margin-top: 1em;
+  border-radius: 2px;
+  background-color: var(--light2);
+  color: var(--light1);
+  font-size: 1.2em;
+}
+
+.no {
+  background-color: var(--dark2);
+}
 /* Rodent/Details */
 .profile-details {
   display: flex;
