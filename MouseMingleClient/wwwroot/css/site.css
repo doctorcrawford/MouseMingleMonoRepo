@@ -45,11 +45,21 @@ html {
   min-height: 100%;
 }
 
+/* Meet the mischielf --> Rodnets/Index */
+
+.profile-container {
+  display: flex;
+  width: 90vw;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 100px;
+}
+
 .rodent-profile-card {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  width: 50vw;
+  width: 30vw;
   background-color: var(--light1);
   align-items: center;
   border-radius: 20px;
@@ -77,6 +87,38 @@ html {
 
 .rodent-profile-card p>a:hover {
   color: var(--dark2);
+}
+
+/* Rodent/Details */
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--light2);
+  padding: 2em;
+  border-radius: 2em;
+}
+
+.profile-details h3 {
+  font-family: var(--header-font-fam);
+  padding: 1em;
+}
+
+.profile-info {
+  display: flex;
+}
+
+.profile-info img {
+  width: 30%;
+  border-radius: 20px;
+  border: 2px solid var(--light1);
+  box-shadow: 1px 1px 5px var(--font);
+  margin: 1em;
+}
+
+.profile-info p {
+  font-size: 2em;
+  background-color: var(--light1);
 }
 
 /* footer */

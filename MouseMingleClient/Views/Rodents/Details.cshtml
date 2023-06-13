@@ -4,17 +4,20 @@
     ViewData["Title"] = "Juicy Details";
 }
 
-@using MouseMingleClient.Models
 @model MouseMingleClient.Models.Rodent
 
-<h3> All About @Model.Name: </h3>
+<div class="profile-details">
+    <h3> All About @Model.Name: </h3>
 
-
-<p>Age: @Model.Age</p>
-<p>Species: @Model.Species</p>
-<p>Location: @Model.Location</p>
-
-
+    <div class="profile-info">
+        <img src=@Model.ProfilePic />
+        <ul>
+            <p>Age: @Model.Age</p>
+            <p>Species: @Model.Species</p>
+            <p>Location: @Model.Location</p>
+        </ul>
+    </div>
+</div>
 <hr />
 
 
