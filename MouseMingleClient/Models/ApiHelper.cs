@@ -5,7 +5,7 @@ namespace MouseMingleClient.Models;
 
 public class ApiHelper
 {
-  private const string HOSTNAME = "http://localhost:####";
+  private const string HOSTNAME = "http://localhost:5000";
   public static async Task<string> GetSearch(string category, string searchParam)
   {
     int rodentAge;
@@ -103,6 +103,7 @@ public class ApiHelper
     return response.Content;
   }
 
+  // Get Interest by InterestId
   public static async Task<string> Get(int id)
   {
     var client = new RestClient(HOSTNAME);
@@ -113,7 +114,7 @@ public class ApiHelper
   }
 
   // Post new interest
-    public static async void Post (string newInterest)
+  public static async void Post (string newInterest)
   {
     var client = new RestClient(HOSTNAME);
     var request = new RestRequest($"api/interests/", Method.Post);
@@ -123,7 +124,7 @@ public class ApiHelper
     await client.PostAsync(request);
   }
 
-  // PUT. Updates existing interest
+  // Put Updates existing interest
   public static async void Put(int id, string newInterest)
   {
     RestClient client = new RestClient(HOSTNAME);
@@ -132,6 +133,8 @@ public class ApiHelper
     request.AddJsonBody(newInterest);
     await client.PutAsync(request);
   }
+
+  // Delete Interest by Id
   public static async void Delete(int id)
   {
     RestClient client = new RestClient(HOSTNAME);
