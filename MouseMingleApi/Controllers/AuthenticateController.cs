@@ -11,7 +11,7 @@ namespace MouseMingleApi.Controllers;
 
 [ApiController]
 [Route("api/v{version:ApiVersion}/[controller]")]
-[ApiVersion("1.1")]
+[ApiVersion("1.0")]
 public class AuthenticateController : Controller
 {
   private readonly UserManager<IdentityUser> _userManager;
