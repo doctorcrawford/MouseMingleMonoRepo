@@ -40,6 +40,15 @@ public class RodentsController : Controller
     return thisRodent;
   }
 
+  // Get RodentInterests at Rodent
+  [HttpGet("{id}/rodentinterests")]
+  public async Task<ActionResult<IEnumerable<RodentInterest>>> GetRodentInterest(int id)
+  {
+    return await _db.RodentInterests
+                    .Where(e => e.RodentId == id)
+                    .ToListAsync();
+  }
+
   [HttpPost]
   public async Task<ActionResult<Rodent>> Post(Rodent rodent)
   {
