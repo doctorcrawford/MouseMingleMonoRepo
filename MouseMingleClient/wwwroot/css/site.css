@@ -10,6 +10,7 @@
   --header-font-fam: "Palette Mosaic", Helvetica, sans-serif;
 }
 
+/* navbar */
 .nav-logo {
   width: 20%;
 }
@@ -18,18 +19,16 @@
   display: flex;
   justify-content: space-evenly;
 }
-
+/* home index header */
 .header-gif {
   width: 25%;
   animation: move 5s linear infinite;
 }
 
-.footer-gif {
-  width: 10%;
-}
-
 body {
   background-color: var(--main-light);
+  margin-bottom: 60px;
+  font-family: var(--main-font);
 }
 
 h1 {
@@ -38,13 +37,7 @@ h1 {
 }
 
 html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+  font-size: 16px;
 }
 
 html {
@@ -52,8 +45,43 @@ html {
   min-height: 100%;
 }
 
-body {
-  margin-bottom: 60px;
+.rodent-profile-card {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 50vw;
+  background-color: var(--light1);
+  align-items: center;
+  border-radius: 20px;
+  padding: 2em;
+  margin: 2em;
+}
+
+.rodent-profile-card img {
+  width: 80%;
+  border-radius: 50%;
+}
+
+.rodent-profile-card h2 {
+  font-family: var(--header-font-fam);
+}
+
+.rodent-profile-card p {
+  font-size: 24px;
+}
+
+.rodent-profile-card p>a {
+  text-decoration: none;
+  color: var(--light2);
+}
+
+.rodent-profile-card p>a:hover {
+  color: var(--dark2);
+}
+
+/* footer */
+.footer-gif {
+  width: 10%;
 }
 
 @keyframes move{
@@ -62,5 +90,11 @@ body {
   }
   100% {
     transform: translateX(50%);
+  }
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
   }
 }
