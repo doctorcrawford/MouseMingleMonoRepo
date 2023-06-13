@@ -16,6 +16,7 @@ public class Rodent
   public int Age { get; set; }
   public string Location { get; set; }
   public string ProfilePic { get; set; }
+  public int UpVote { get; set; }
   public List<RodentInterest> RodentInterests { get; set; }
 
   public static List<Rodent> GetAll()
