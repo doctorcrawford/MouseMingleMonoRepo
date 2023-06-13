@@ -24,6 +24,10 @@
   animation: move 5s linear infinite;
 }
 
+.footer-gif {
+  width: 10%;
+}
+
 body {
   background-color: var(--main-light);
 }

@@ -10,10 +10,15 @@
 {
   <p>No Rodents Yet</p>
 }
-  <ol>
-    @foreach (Rodent rodent in Model)
-    {
-      <li><strong>@rodent.Name</strong> the @rodent.Species | <a href="/Rodents/Details/@(rodent.RodentId)">View Details</a>
-      </li>
-    }
-  </ol>
+
+
+
+@foreach (Rodent rodent in Model)
+{
+  <div class="rodent-profile-card">
+  <h2><strong>@rodent.Name</strong></h2>
+  <p>the @rodent.Species</p>
+  <p><a href="/Rodents/Details/@(rodent.RodentId)">View Details</a></p>
+  <img src="@rodent.ProfilePic">
+</div>
+}
