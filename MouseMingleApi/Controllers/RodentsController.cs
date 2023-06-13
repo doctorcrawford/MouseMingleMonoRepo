@@ -61,4 +61,36 @@ public class RodentsController : Controller
 
     return NoContent();
   }
+
+  [HttpPut("{id}")]
+  public async Task<IActionResult> Put(int id, Rodent rodent)
+  {
+    if (id != rodent.RodentId)
+    {
+      return BadRequest();
+    }
+    _db.Rodents.Update(rodent);
+
+    try
+    {
+      await _db.SaveChangesAsync();
+    }
+    catch (DbUpdateConcurrencyException)
+    {
+      if (!RodentExists(id))
+      {
+        return NotFound();
+      }
+      else
+      {
+        throw;
+      }
+    }
+    return NoContent();
+  }
+
+  private bool RodentExists(int id)
+  {
+    return _db.Rodents.Any(e => e.RodentId == id);
+  }
 }
