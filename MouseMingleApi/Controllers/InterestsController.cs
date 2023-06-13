@@ -48,7 +48,7 @@ public class InterestsController : Controller
     return CreatedAtAction("GetInterest", new { id = interest.InterestId }, interest);
   }
 
-  [HttpDelete("{id")]
+  [HttpDelete("{id}")]
   public async Task<IActionResult> DeleteInterest(int id)
   {
     Interest interest = await _db.Interests.FindAsync(id);
@@ -60,5 +60,36 @@ public class InterestsController : Controller
     await _db.SaveChangesAsync();
 
     return NoContent();
+  }
+  [HttpPut("{id}")]
+  public async Task<IActionResult> Put(int id, Interest interest)
+  {
+    if (id != interest.InterestId)
+    {
+      return BadRequest();
+    }
+    _db.Interests.Update(interest);
+
+    try
+    {
+      await _db.SaveChangesAsync();
+    }
+    catch (DbUpdateConcurrencyException)
+    {
+      if (!InterestExists(id))
+      {
+        return NotFound();
+      }
+      else
+      {
+        throw;
+      }
+    }
+    return NoContent();
+  }
+
+  private bool InterestExists(int id)
+  {
+    return _db.Interests.Any(e => e.InterestId == id);
   }
 }
