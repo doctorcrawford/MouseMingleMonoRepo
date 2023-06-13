@@ -7,25 +7,13 @@
 @using MouseMingleClient.Models
 @model MouseMingleClient.Models.Rodent
 
-<h1> All About @Model.Name: </h1>
+<h3> All About @Model.Name: </h3>
 
-<img src="wwwroot/img/profPic" alt=$"Profile Picture for {Model.Name}">
 
 <p>Age: @Model.Age</p>
 <p>Species: @Model.Species</p>
 <p>Location: @Model.Location</p>
 
-<!-- @if (@Model.RodentInterests.Count == 0)
-{
-    <p>This rodent isn't interested in anything! Lame!</p>
-}
-else
-{
-    foreach (RodentInterest rodInt in Model.RodentInterests)
-    {
-        <li>@rodInt.Interest.Description</li>
-    }
-} -->
 
 <hr />
 
@@ -34,5 +22,7 @@ else
 <p>@Html.ActionLink("Your Profile", "RodentProfile")</p>
 <p>(link) Make A Match? (Y/N)</p>
 
-<!-- <p>@Html.ActionLink("Edit details", "Edit", new { id = @Model.AnimalId}) </p>
-<p>@Html.ActionLink("Delete animal", "Delete", new { id = @Model.AnimalId})</p> --> *@
+
+<p>@Html.ActionLink("Edit details", "Edit", new { id = @Model.RodentId}) </p>
+<p>@Html.ActionLink("Delete Rodent", "Delete", new { id = @Model.RodentId})</p>
+

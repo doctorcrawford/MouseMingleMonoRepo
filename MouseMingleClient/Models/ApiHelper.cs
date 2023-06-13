@@ -6,7 +6,7 @@ namespace MouseMingleClient.Models;
 
 public class ApiHelper
 {
-  private const string HOSTNAME = "http://localhost:####";
+  private const string HOSTNAME = "http://localhost:5000";
   public static async Task<string> GetSearch(string category, string searchParam)
   {
     int rodentAge;
@@ -14,21 +14,21 @@ public class ApiHelper
     if (isValid)
     {
       RestClient client = new RestClient(HOSTNAME);
-      RestRequest request = new RestRequest($"api/rodents?{category}={rodentAge}", Method.Get);
+      RestRequest request = new RestRequest($"api/v1/rodents?{category}={rodentAge}", Method.Get);
       RestResponse response = await client.GetAsync(request);
       return response.Content;
     }
     if (searchParam == null)
     {
       RestClient client = new RestClient(HOSTNAME);
-      RestRequest request = new RestRequest($"api/rodents", Method.Get);
+      RestRequest request = new RestRequest($"api/v1/rodents", Method.Get);
       RestResponse response = await client.GetAsync(request);
       return response.Content;
     }
     else
     {
       RestClient client = new RestClient(HOSTNAME);
-      RestRequest request = new RestRequest($"api/rodents?{category}={searchParam}", Method.Get);
+      RestRequest request = new RestRequest($"api/v1/rodents?{category}={searchParam}", Method.Get);
       RestResponse response = await client.GetAsync(request);
       return response.Content;
     }
@@ -38,7 +38,7 @@ public class ApiHelper
   public static async Task<string> GetAllRodentsAsync()
   {
     var client = new RestClient(HOSTNAME);
-    var request = new RestRequest($"api/rodents", Method.Get);
+    var request = new RestRequest($"api/v1/rodents", Method.Get);
     var response = await client.GetAsync(request);
 
     return response.Content;
@@ -48,7 +48,7 @@ public class ApiHelper
   public static async Task<string> GetDetailsAsync(int id)
   {
     var client = new RestClient(HOSTNAME);
-    var request = new RestRequest($"api/rodents/{id}", Method.Get);
+    var request = new RestRequest($"api/v1/rodents/{id}", Method.Get);
     var response = await client.GetAsync(request);
 
     return response.Content;
@@ -58,7 +58,7 @@ public class ApiHelper
   public static async void PostRodentAsync(string newAnimal)
   {
     var client = new RestClient(HOSTNAME);
-    var request = new RestRequest($"api/rodents/", Method.Post);
+    var request = new RestRequest($"api/v1/rodents/", Method.Post);
     request.AddHeader("Content-Type", "application/json");
     request.AddJsonBody(newAnimal);
 
@@ -69,7 +69,7 @@ public class ApiHelper
   public static async void PutRodentAsync(int id, string newRodent)
   {
     RestClient client = new RestClient(HOSTNAME);
-    RestRequest request = new RestRequest($"api/rodents/{id}", Method.Put);
+    RestRequest request = new RestRequest($"api/v1/rodents/{id}", Method.Put);
     request.AddHeader("Content-Type", "application/json");
     request.AddJsonBody(newRodent);
     await client.PutAsync(request);
@@ -79,7 +79,7 @@ public class ApiHelper
   public static async void DeleteAsync(int id)
   {
     RestClient client = new RestClient(HOSTNAME);
-    RestRequest request = new RestRequest($"api/animals/{id}", Method.Delete);
+    RestRequest request = new RestRequest($"api/v1/rodents/{id}", Method.Delete);
     request.AddHeader("Content-Type", "application/json");
     await client.DeleteAsync(request);
   }
@@ -98,45 +98,48 @@ public class ApiHelper
   public static async Task<string> GetAllInterestsAsync()
   {
     var client = new RestClient(HOSTNAME);
-    var request = new RestRequest($"api/interests", Method.Get);
+    var request = new RestRequest($"api/v1/interests", Method.Get);
     var response = await client.GetAsync(request);
 
     return response.Content;
   }
 
+  // Get Interest by InterestId
   public static async Task<string> Get(int id)
   {
     var client = new RestClient(HOSTNAME);
-    var request = new RestRequest($"api/interests/{id}", Method.Get);
+    var request = new RestRequest($"api/v1/interests/{id}", Method.Get);
     var response = await client.GetAsync(request);
 
     return response.Content;
   }
 
   // Post new interest
-    public static async void Post (string newInterest)
+  public static async void Post (string newInterest)
   {
     var client = new RestClient(HOSTNAME);
-    var request = new RestRequest($"api/interests/", Method.Post);
+    var request = new RestRequest($"api/v1/interests/", Method.Post);
     request.AddHeader("Content-Type", "application/json");
     request.AddJsonBody(newInterest);
 
     await client.PostAsync(request);
   }
 
-  // PUT. Updates existing interest
+  // Put Updates existing interest
   public static async void Put(int id, string newInterest)
   {
     RestClient client = new RestClient(HOSTNAME);
-    RestRequest request = new RestRequest($"api/interest/{id}", Method.Put);
+    RestRequest request = new RestRequest($"api/v1/interest/{id}", Method.Put);
     request.AddHeader("Content-Type", "application/json");
     request.AddJsonBody(newInterest);
     await client.PutAsync(request);
   }
+
+  // Delete Interest by Id
   public static async void Delete(int id)
   {
     RestClient client = new RestClient(HOSTNAME);
-    RestRequest request = new RestRequest($"api/interests/{id}", Method.Delete);
+    RestRequest request = new RestRequest($"api/v1/interests/{id}", Method.Delete);
     request.AddHeader("Content-Type", "application/json");
     await client.DeleteAsync(request);
   }
@@ -145,6 +148,29 @@ public class ApiHelper
   // ^^^^ Interest Logic ^^^^
   //---------------------------------------------
 
+    //--------------------------------------------- 
+  // vvvv RodentInterest Logic vvvv
+  //---------------------------------------------
+
+    // Get All RodentInterests
+  public static async Task<string> GetAllRodentInterests()
+  {
+    var client = new RestClient(HOSTNAME);
+    var request = new RestRequest($"api/interests", Method.Get);
+    var response = await client.GetAsync(request);
+
+    return response.Content;
+  }
+
+    // Get RodentInterest
+  public static async Task<string> GetRodentInterest(int id)
+  {
+    var client = new RestClient(HOSTNAME);
+    var request = new RestRequest($"api/rodentinterests", Method.Get);
+    var response = await client.GetAsync(request);
+
+    return response.Content;
+  }
 
   //---------------------------------------------
   // vvvv Account/User Logic vvvv
@@ -154,7 +180,7 @@ public class ApiHelper
   public static async void RegisterUserAsync(string newUser)
   {
     var client = new RestClient(HOSTNAME);
-    var request = new RestRequest($"api/accounts/", Method.Post);
+    var request = new RestRequest($"api/v1/accounts/", Method.Post);
     request.AddHeader("Content-Type", "application/json");
     request.AddJsonBody(newUser);
 

@@ -19,6 +19,12 @@ public class RodentsController : Controller
     return View(rodent);
   }
 
+// will need User Id to display join b/w user and their rodent.
+  public IActionResult RodentProfile()
+  {
+    return View();
+  }
+
   public ActionResult Create()
   {
     return View();

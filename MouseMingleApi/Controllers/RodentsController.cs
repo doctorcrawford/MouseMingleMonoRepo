@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
 
-
 namespace MouseMingleApi.Controllers;
 
 [ApiController]
@@ -40,6 +39,15 @@ public class RodentsController : Controller
     return thisRodent;
   }
 
+  // Get RodentInterests at Rodent
+  [HttpGet("{id}/rodentinterests")]
+  public async Task<ActionResult<IEnumerable<RodentInterest>>> GetRodentInterest(int id)
+  {
+    return await _db.RodentInterests
+                    .Where(e => e.RodentId == id)
+                    .ToListAsync();
+  }
+
   [HttpPost]
   public async Task<ActionResult<Rodent>> Post(Rodent rodent)
   {
@@ -48,19 +56,19 @@ public class RodentsController : Controller
     return CreatedAtAction("GetRodent", new { id = rodent.RodentId }, rodent);
   }
   
-  [HttpDelete("{id}")]
-  public async Task<IActionResult> DeleteInterest(int id)
-  {
-    Rodent rodent = await _db.Rodents.FindAsync(id);
-    if (rodent == null)
-    {
-      return NotFound();
-    }
-    _db.Rodents.Remove(rodent);
-    await _db.SaveChangesAsync();
+  // [HttpDelete("{id}")]
+  // public async Task<IActionResult> DeleteInterest(int id)
+  // {
+  //   Rodent rodent = await _db.Rodents.FindAsync(id);
+  //   if (rodent == null)
+  //   {
+  //     return NotFound();
+  //   }
+  //   _db.Rodents.Remove(rodent);
+  //   await _db.SaveChangesAsync();
 
-    return NoContent();
-  }
+  //   return NoContent();
+  // }
 
   [HttpPut("{id}")]
   public async Task<IActionResult> Put(int id, Rodent rodent)
@@ -89,8 +97,25 @@ public class RodentsController : Controller
     return NoContent();
   }
 
+  [HttpDelete("{id}")]
+  public async Task<IActionResult> DeleteRodent(int id)
+  {
+    Rodent rodent = await _db.Rodents.FindAsync(id);
+    if (rodent == null)
+    {
+      return NotFound();
+    }
+
+    _db.Rodents.Remove(rodent);
+    await _db.SaveChangesAsync();
+
+    return NoContent();
+  }
+
   private bool RodentExists(int id)
   {
     return _db.Rodents.Any(e => e.RodentId == id);
   }
 }
+
+
