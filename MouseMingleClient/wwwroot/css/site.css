@@ -65,6 +65,7 @@ html {
   border-radius: 20px;
   padding: 2em;
   margin: 2em;
+  box-shadow: 1px 1px 2px var(--font);
 }
 
 .rodent-profile-card img {
@@ -91,12 +92,33 @@ html {
   color: var(--dark2);
 }
 
+.upvote-form-container {
+  padding: .8em;
+}
+
+.upvote-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.upvote-form p {
+  font-size: 1em;
+}
+
+.upvote-btns {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .upvote {
-  margin-top: 1em;
-  border-radius: 2px;
+  border: none;
+  box-shadow: 1px 1px 2px var(--font);
+  border-radius: 50%;
   background-color: var(--light2);
-  color: var(--light1);
+  color: var(--main-light);
   font-size: 1.2em;
+  height: 1.6em;
+  width: 1.6em;
 }
 
 .no {
