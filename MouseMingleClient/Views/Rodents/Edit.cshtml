@@ -9,6 +9,8 @@
 @using (Html.BeginForm())
 {
   @Html.HiddenFor(model => model.RodentId)
+  @Html.HiddenFor(model => model.ProfilePic)
+  @Html.HiddenFor(model => model.UpVote)
 
   @Html.LabelFor(model => model.Name)
   @Html.TextBoxFor(model => model.Name, new { @Value = Model.Name})
