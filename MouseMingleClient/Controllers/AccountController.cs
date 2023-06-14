@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using MouseMingleClient.Models;
 using MouseMingleClient.ViewModels;
+// using Microsoft.AspNetCore.Http;
+// using System.Web;
+// using Microsoft.AspNetCore.Http.Features;
+// using System.Security.Claims;
 
 
 namespace MouseMingleClient.Controllers;
@@ -53,7 +57,8 @@ public class AccountController : Controller
     {
       return View(model);
     }
-    ApplicationUser.Login(model);
+    var tokenModel = ApplicationUser.Login(model);
+    HttpContext.Session.SetString("jwt", tokenModel.Token);
     return RedirectToAction("Index");
   }
 
