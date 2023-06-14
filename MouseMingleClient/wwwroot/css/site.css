@@ -184,7 +184,7 @@ html {
   align-items: center;
 }
 
-.login-img,
+.login-img
 .register-img {
   width: 170px;
   height: 2em;
@@ -195,8 +195,14 @@ html {
 }
 
 /* footer */
+.footer-gif-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .footer-gif {
   width: 10%;
+  animation: move 2s linear infinite;
 }
 
 @keyframes move{
