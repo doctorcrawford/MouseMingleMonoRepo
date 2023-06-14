@@ -20,6 +20,8 @@ builder.Services.AddAuthentication(options =>
   options.LoginPath = "/api/v1/authenticate/login";
 });
 
+builder.Services.AddSession();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -46,4 +48,4 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-app.Run();
+app.UseSession();
