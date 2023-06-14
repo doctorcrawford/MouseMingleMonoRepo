@@ -3,27 +3,32 @@
 }
 
 @using MouseMingleClient.ViewModels
-
 @model LoginViewModel
 
-<h2>Log in to your account</h2>
-<hr />
+<div class="login-main">
+  <h2>Log In</h2>
+  <hr />
 
-@if(!ViewData.ModelState.IsValid)
-{
-  @Html.ValidationSummary("Please fix the following error(s) and then resubmit the form:") 
-}
+  @if(!ViewData.ModelState.IsValid)
+  {
+    @Html.ValidationSummary("Please fix the following error(s) and then resubmit the form:") 
+  }
 
-@using (Html.BeginForm())
-{
-  @Html.LabelFor(m => m.Email) 
-  @Html.TextBoxFor(m => m.Email)
+  @using (Html.BeginForm())
+  {
+    <div class="login-form">
+      <div class="login-input">
+        @Html.LabelFor(m => m.Email) 
+        @Html.TextBoxFor(m => m.Email)
+      </div>
+      <div class="login-input">
+        @Html.LabelFor(m => m.Password)
+        @Html.EditorFor(m => m.Password)
+      </div>
 
-  @Html.LabelFor(m => m.Password)
-  @Html.EditorFor(m => m.Password)
+    <input type="submit" value="Login" class="login-btn"/>
+    </div>
+  }
+<p class="login-links"><span>@Html.ActionLink("Register new account", "Register")</span><span class="login-img"></span><span>@Html.ActionLink("Back to accounts home", "Index")</span></p>
+</div>
 
-  <input type="submit" value="Log in" />
-}
-
-<p>@Html.ActionLink("Register for an account", "Register")</p>
-<p>@Html.ActionLink("Back to accounts page", "Index")</p>
