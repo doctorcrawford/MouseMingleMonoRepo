@@ -2,6 +2,7 @@ using MouseMingleApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MouseMingleApi.Controllers;
 
@@ -18,6 +19,7 @@ public class RodentsController : Controller
     _db = db;
   }
 
+  [Authorize]
   [HttpGet]
   public async Task<ActionResult<IEnumerable<Rodent>>> GetRodents()
   {
