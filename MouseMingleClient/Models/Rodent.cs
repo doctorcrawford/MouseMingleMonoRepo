@@ -37,18 +37,13 @@ public class Rodent
     var jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
     var rodent = JsonConvert.DeserializeObject<Rodent>(jsonResponse.ToString());
 
-    // var apiCallTaskInterestsPopulate = ApiHelper.GetAllInterestsAsync();
-    // var resultInterestsPopulate = apiCallTask.Result;
-    // var jsonResponseInterestsPopulate = JsonConvert.DeserializeObject<JArray>(result);
-    // var interestList = JsonConvert.DeserializeObject<Interest>(jsonResponse.ToString());
-
     // Get RodentInterests
-    var apiCallTaskRodentInterests = ApiHelper.GetRodentInterest(id);
-    var resultRodentInterest = apiCallTaskRodentInterests.Result;
-    JArray jsonResponseRodentInterests = JsonConvert.DeserializeObject<JArray>(resultRodentInterest);
-    List<RodentInterest> rodentInterests = JsonConvert.DeserializeObject<List<RodentInterest>>(jsonResponseRodentInterests.ToString());
+    // var apiCallTaskRodentInterests = ApiHelper.GetRodentInterest(id);
+    // var resultRodentInterest = apiCallTaskRodentInterests.Result;
+    // JArray jsonResponseRodentInterests = JsonConvert.DeserializeObject<JArray>(resultRodentInterest);
+    // List<RodentInterest> rodentInterests = JsonConvert.DeserializeObject<List<RodentInterest>>(jsonResponseRodentInterests.ToString());
 
-    rodent.RodentInterests = rodentInterests;
+    // rodent.RodentInterests = rodentInterests;
     return rodent;
   }
 

@@ -21,9 +21,10 @@
 else
 {
 <ul>
-    @foreach (RodentInterest rodInt in Model.RodentInterests)
+    <h3>Interests:</h3>
+    @foreach (RodentInterest join in Model.RodentInterests)
     {
-        <li>@rodInt.Interest.Description</li>
+        <li>@join.Interest.Description</li>
     }
 </ul>
 }

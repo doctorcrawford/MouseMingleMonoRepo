@@ -39,15 +39,6 @@ public class RodentInterestsController : Controller
     }
     return entry;
   }
-
-  // [HttpGet("{id}")]
-  // public async Task<ActionResult<IEnumerable<RodentInterest>>> GetRodentInterest(int id)
-  // {
-  //   return await _db.RodentInterests
-  //                   .Where(rI => rI.RodentId == id)
-  //                   .Include(rodent => rodent.Interest)
-  //                   .ToListAsync();
-  // }
   
 
   [HttpPost]
