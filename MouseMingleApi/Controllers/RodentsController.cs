@@ -32,6 +32,7 @@ public class RodentsController : Controller
   {
     Rodent thisRodent = await _db.Rodents
                                         .Include(r => r.RodentInterests)
+                                        .ThenInclude(join => join.Interest)
                                         .FirstOrDefaultAsync(r =>r.RodentId == id);
     if (thisRodent == null)
     {
