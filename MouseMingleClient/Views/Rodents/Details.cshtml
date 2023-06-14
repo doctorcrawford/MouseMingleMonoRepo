@@ -14,6 +14,19 @@
 <p>Species: @Model.Species</p>
 <p>Location: @Model.Location</p>
 
+@if (@Model.RodentInterests.Count == 0)
+{
+    <p>This rodent isn't interested in anything! Lame!</p>
+}
+else
+{
+<ul>
+    @foreach (RodentInterest rodInt in Model.RodentInterests)
+    {
+        <li>@rodInt.Interest.Description</li>
+    }
+</ul>
+}
 
 <hr />
 

@@ -103,6 +103,15 @@ public class ApiHelper
     return response.Content;
   }
 
+  public static async Task<string> GetAllInterestsByRat(int id)
+  {
+    var client = new RestClient(HOSTNAME);
+    var request = new RestRequest($"api/v1/interest/rodent/{id}");
+    var response = await client.GetAsync(request);
+
+    return response.Content;
+  }
+
   // Get Interest by InterestId
   public static async Task<string> Get(int id)
   {
@@ -155,7 +164,7 @@ public class ApiHelper
   public static async Task<string> GetAllRodentInterests()
   {
     var client = new RestClient(HOSTNAME);
-    var request = new RestRequest($"api/interests", Method.Get);
+    var request = new RestRequest($"api/v1/interests", Method.Get);
     var response = await client.GetAsync(request);
 
     return response.Content;
@@ -165,7 +174,7 @@ public class ApiHelper
   public static async Task<string> GetRodentInterest(int id)
   {
     var client = new RestClient(HOSTNAME);
-    var request = new RestRequest($"api/rodentinterests", Method.Get);
+    var request = new RestRequest($"api/v1/rodent/{id}/rodentinterests", Method.Get);
     var response = await client.GetAsync(request);
 
     return response.Content;

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
 
+
 namespace MouseMingleApi.Controllers;
 
 [ApiController]
@@ -39,12 +40,17 @@ public class RodentsController : Controller
     return thisRodent;
   }
 
+  // [HttpGet("{id}/interests")]
+  // public async Task<ActionResult<IEnumerable<Interest>>>
+
   // Get RodentInterests at Rodent
   [HttpGet("{id}/rodentinterests")]
   public async Task<ActionResult<IEnumerable<RodentInterest>>> GetRodentInterest(int id)
   {
     return await _db.RodentInterests
                     .Where(e => e.RodentId == id)
+                    .Include(e => e.Interest)
+                    // .Where(e => e.InterestId == id)
                     .ToListAsync();
   }
 
