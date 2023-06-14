@@ -3,29 +3,36 @@
 }
 
 @using MouseMingleClient.ViewModels
-
 @model RegisterViewModel
 
-<h2>Register a new rodent!</h2>
-<hr />
+<div class="register-main">
+  <h2>Register a new rodent!</h2>
+  <hr />
 
-@if(!ViewData.ModelState.IsValid) 
-{
-  @Html.ValidationSummary("Please fix the following error(s) and then resubmit the form:") 
-}
+  @if(!ViewData.ModelState.IsValid) 
+  {
+    @Html.ValidationSummary("Please fix the following error(s) and then resubmit the form:") 
+  }
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post))
-{
-  @Html.LabelFor(user => user.Email)
-  @Html.TextBoxFor(user=> user.Email)
+  @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+  {
+    <div class="register-form">
+      <div class="register-input">
+        @Html.LabelFor(user => user.Email)
+        @Html.TextBoxFor(user=> user.Email)
+      </div>      
+      <div class="register-input">
+        @Html.LabelFor(user=> user.Password)
+        @Html.EditorFor(user=> user.Password)
+      </div>
+      <div class="register-input">
+        @Html.LabelFor(user=> user.ConfirmPassword)
+        @Html.EditorFor(user=> user.ConfirmPassword)
+      </div>
 
-  @Html.LabelFor(user=> user.Password)
-  @Html.EditorFor(user=> user.Password)
+      <input type="submit" value="Register" class="register-btn" />
+    </div>
+  }
 
-  @Html.LabelFor(user=> user.ConfirmPassword)
-  @Html.EditorFor(user=> user.ConfirmPassword)
-
-  <input type="submit" value="Register" />
-}
-
-<p>@Html.ActionLink("Back to accounts page", "Index")</p>
+  <p class="register-links">@Html.ActionLink("Back to accounts page", "Index")<span class="register-img"></span></p>
+</div>

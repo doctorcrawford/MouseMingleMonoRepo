@@ -136,7 +136,8 @@ html {
 
 
 /* Login page Accounts/Login */
-.login-main {
+.login-main, 
+.register-main {
   background-color: var(--light1);
   width: 555px;
   margin: auto;
@@ -144,12 +145,14 @@ html {
   border-radius: 1em;
 }
 
-.login-main h2 {
+.login-main h2,
+.register-main h2 {
   font-family: var(--header-font-fam);
   text-align: center;
 }
 
-.login-form {
+.login-form,
+.register-form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -159,26 +162,30 @@ html {
   padding: .8em;
 }
 
-.login-input {
+.login-input,
+.register-input {
   width: 85%;
   display: flex;
   justify-content: space-between;
   font-size: 1.2em;
 }
 
-.login-btn {
+.login-btn,
+.register-btn {
   align-self: center;
   margin: .4em;
   font-size: 1.2em;
 }
 
-.login-links {
+.login-links,
+.register-links {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.login-img {
+.login-img,
+.register-img {
   width: 170px;
   height: 2em;
   background-image: url(../img/skittery.gif);
