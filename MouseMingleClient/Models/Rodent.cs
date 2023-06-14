@@ -18,9 +18,9 @@ public class Rodent
   public string ProfilePic { get; set; }
   public List<RodentInterest> RodentInterests { get; set; }
 
-  public static List<Rodent> GetAll()
+  public static List<Rodent> GetAll(string token)
   {
-    var apiCallTask = ApiHelper.GetAllRodentsAsync();
+    var apiCallTask = ApiHelper.GetAllRodentsAsync(token);
     var result = apiCallTask.Result;
 
     var jsonResponse = JsonConvert.DeserializeObject<JArray>(result);

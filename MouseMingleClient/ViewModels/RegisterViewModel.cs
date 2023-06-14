@@ -5,6 +5,10 @@ namespace MouseMingleClient.ViewModels
   public class RegisterViewModel
   {
     [Required]
+    [Display(Name = "User Name")]
+    public string UserName { get; set; }
+
+    [Required]
     [EmailAddress]
     [Display(Name = "Email Address")]
     public string Email { get; set; }

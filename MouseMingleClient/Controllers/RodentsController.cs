@@ -2,12 +2,12 @@ using Microsoft.AspNetCore.Mvc;
 using MouseMingleClient.Models;
 
 namespace MouseMingleClient.Controllers;
-
 public class RodentsController : Controller
 {
   public IActionResult Index()
   {
-    List<Rodent> rodents = Rodent.GetAll();
+    var token = HttpContext.Session.GetString("jwt");
+    List<Rodent> rodents = Rodent.GetAll(token);
 
     return View(rodents);
   }

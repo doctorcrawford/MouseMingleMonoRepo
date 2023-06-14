@@ -1,10 +1,13 @@
 using System.Threading.Tasks;
 using RestSharp;
 using MouseMingleClient.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authentication;
+
 
 namespace MouseMingleClient.Models;
 
-public class ApiHelper
+public class ApiHelper : ControllerBase
 {
   private const string HOSTNAME = "http://localhost:5000";
   public static async Task<string> GetSearch(string category, string searchParam)
@@ -35,10 +38,13 @@ public class ApiHelper
   }
 
   // GET. Returns a list of all rodent profiles
-  public static async Task<string> GetAllRodentsAsync()
+  public static async Task<string> GetAllRodentsAsync(string token)
   {
     var client = new RestClient(HOSTNAME);
     var request = new RestRequest($"api/v1/rodents", Method.Get);
+    // request.
+    request.AddHeader("Authorization", $"Bearer {token}");
+    // request.AddHeader("jwt", $"Bearer{token}");
     var response = await client.GetAsync(request);
 
     return response.Content;
@@ -49,6 +55,7 @@ public class ApiHelper
   {
     var client = new RestClient(HOSTNAME);
     var request = new RestRequest($"api/v1/rodents/{id}", Method.Get);
+    // request.AddHeader("Authorization", $"Bearer {token}");
     var response = await client.GetAsync(request);
 
     return response.Content;
@@ -182,11 +189,13 @@ public class ApiHelper
   {
     var client = new RestClient(HOSTNAME);
     var request = new RestRequest($"api/v1/authenticate/login", Method.Post);
-    request.AddHeader("Content-Type", "application.json");
+    request.AddHeader("Content-Type", "application/json");
     request.AddJsonBody(user);
 
-    var response = await client.PostAsync(request);
-    
+    var response = await client.ExecuteAsync(request);
+    Console.WriteLine("Dragon");
+    Console.WriteLine("Dragon");
+    Console.WriteLine("Dragon");
     return response.Content;
   }
 }
