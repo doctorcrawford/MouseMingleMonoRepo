@@ -4,6 +4,7 @@
 
 @model MouseMingleClient.Models.Rodent
 
+<div class="edit-main">
 <h4>Edit @Model.Name</h4>
 
 @using (Html.BeginForm())
@@ -29,6 +30,7 @@
     <input type="submit" value="Save changes" class="btn btn-primary"/>
   </div>
 }
+</div>
 
 <br>
 <p>@Html.ActionLink("Back to details", "Details", new {id = @Model.RodentId})</p>

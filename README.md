@@ -23,7 +23,7 @@ An dating app for rodents. User can login and see all the available rodents incl
 * RestSharp
 
 ## Database Structure
-![photo of SQL designer](./MouseMingleClient/wwwroot/imgs/sqldesign.png)
+![photo of SQL designer](./MouseMingleClient/wwwroot/img/sqldesign.png)
 
 ## Instructions to set up database
 1. Clone this repo.

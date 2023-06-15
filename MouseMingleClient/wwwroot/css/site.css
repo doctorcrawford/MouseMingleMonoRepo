@@ -178,7 +178,8 @@ html {
 /* Login page Accounts/Login */
 .login-main, 
 .register-main,
-.account-main {
+.account-main,
+.edit-main {
   background-color: var(--light1);
   width: 555px;
   margin: auto;
@@ -188,7 +189,8 @@ html {
 
 .login-main h2,
 .register-main h2,
-.account-main h2 {
+.account-main h2,
+.edit-main h4 {
   font-family: var(--header-font-fam);
   text-align: center;
 }
