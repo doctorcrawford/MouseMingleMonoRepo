@@ -32,10 +32,6 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-// builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-//                 .AddEntityFrameworkStores<ToDoListContext>()
-//                 .AddDefaultTokenProviders();
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -49,3 +45,5 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.UseSession();
+
+app.Run();
