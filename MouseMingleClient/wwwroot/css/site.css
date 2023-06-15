@@ -156,6 +156,11 @@ html {
   background-color: var(--light1);
 }
 
+.profile-info li {
+  font-size: 1.2em;
+  background-color: var(--light1);
+}
+
 .details-links p>a {
   text-decoration: none;
   color: var(--main-light);
