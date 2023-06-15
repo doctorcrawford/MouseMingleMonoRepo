@@ -16,6 +16,9 @@
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post))
 {
+  @Html.LabelFor(user => user.UserName)
+  @Html.TextBoxFor(user=> user.UserName)
+
   @Html.LabelFor(user => user.Email)
   @Html.TextBoxFor(user=> user.Email)
 
