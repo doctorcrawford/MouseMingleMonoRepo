@@ -82,7 +82,6 @@ public class RodentsController : Controller
       Rodent.AddInterestToRodents(rodent.RodentId, item);
     }
     return RedirectToAction("Details", new { id = rodent.RodentId});
-    }
   }
 
   // need tag RodentInterestId

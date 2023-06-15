@@ -176,6 +176,8 @@ public class ApiHelper
     var request = new RestRequest($"api/v1/interests", Method.Get);
     var response = await client.GetAsync(request);
 
+    return response.Content;
+  }
     // Get RodentInterest at Rodent
   public static async Task<string> GetRodentInterest(int id)
   {

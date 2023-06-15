@@ -15,28 +15,23 @@
             <p>Age: @Model.Age</p>
             <p>Species: @Model.Species</p>
             <p>Location: @Model.Location</p>
+            @if (@Model.RodentInterests.Count == 0)
+            {
+                <p>This rodent isn't interested in anything! Lame!</p>
+            }
+            else
+            {
+            <ul>
+                <h3>Interests:</h3>
+                @foreach (RodentInterest join in Model.RodentInterests)
+                {
+                    <li>@join.Interest.Description</li>
+                }
+            </ul>
+            }
         </ul>
     </div>
 </div>
-
-<p>Age: @Model.Age</p>
-<p>Species: @Model.Species</p>
-<p>Location: @Model.Location</p>
-
-@if (@Model.RodentInterests.Count == 0)
-{
-    <p>This rodent isn't interested in anything! Lame!</p>
-}
-else
-{
-<ul>
-    <h3>Interests:</h3>
-    @foreach (RodentInterest join in Model.RodentInterests)
-    {
-        <li>@join.Interest.Description</li>
-    }
-</ul>
-}
 
 <hr />
 
