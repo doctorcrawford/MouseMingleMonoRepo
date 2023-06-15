@@ -18,13 +18,33 @@
         </ul>
     </div>
 </div>
+
+<p>Age: @Model.Age</p>
+<p>Species: @Model.Species</p>
+<p>Location: @Model.Location</p>
+
+@if (@Model.RodentInterests.Count == 0)
+{
+    <p>This rodent isn't interested in anything! Lame!</p>
+}
+else
+{
+<ul>
+    <h3>Interests:</h3>
+    @foreach (RodentInterest join in Model.RodentInterests)
+    {
+        <li>@join.Interest.Description</li>
+    }
+</ul>
+}
+
 <hr />
 
-
+<p>@Html.ActionLink("Add Interests", "AddInterest", new {id = Model.RodentId})</p>
 <p>@Html.ActionLink("Back to All Rodents", "Index")</p>
 <p>@Html.ActionLink("Your Profile", "RodentProfile")</p>
 <p>(link) Make A Match? (Y/N)</p>
-
+<p>@Html.ActionLink("Add a rodent match", "AddMatch", new { id = Model.RodentId })</p>
 
 <p>@Html.ActionLink("Edit details", "Edit", new { id = @Model.RodentId}) </p>
 <p>@Html.ActionLink("Delete Rodent", "Delete", new { id = @Model.RodentId})</p>

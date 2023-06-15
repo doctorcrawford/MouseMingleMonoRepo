@@ -2,6 +2,8 @@ using MouseMingleApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
+using System.Threading.Tasks;
+
 
 namespace MouseMingleApi.Controllers;
 
@@ -23,6 +25,7 @@ public class RodentsController : Controller
   {
     return await _db.Rodents
                     .Include(rodent => rodent.RodentInterests)
+                    .ThenInclude(join => join.Interest)
                     .ToListAsync();
   }
 
@@ -31,6 +34,7 @@ public class RodentsController : Controller
   {
     Rodent thisRodent = await _db.Rodents
                                         .Include(r => r.RodentInterests)
+                                        .ThenInclude(join => join.Interest)
                                         .FirstOrDefaultAsync(r =>r.RodentId == id);
     if (thisRodent == null)
     {
@@ -39,12 +43,46 @@ public class RodentsController : Controller
     return thisRodent;
   }
 
+// Get My Rodent by Name
+[HttpGet("api/v1/rodents/{myRodentsName}")]
+public async Task<ActionResult<Rodent>> GetRodentName(string myRodentsName)
+{
+  Rodent myRodent = await _db.Rodents
+                                    .Include(r => r.RodentInterests)
+                                    .ThenInclude(join => join.Interest)
+                                    .FirstOrDefaultAsync(r => r.Name == myRodentsName);
+  return myRodent;
+}
+
+  // Post Join RodentInterets with Interests and Rodents
+  [HttpPost("{rodentId}/interests/{interestIdYo}")]
+  public async Task<ActionResult<Rodent>> AddInterests(int rodentId, int interestIdYo)
+  {
+  #nullable enable
+    RodentInterest? joinEntity = await _db.RodentInterests.FirstOrDefaultAsync(join => (join.InterestId == interestIdYo && join.RodentId == rodentId));
+  #nullable disable
+    if (joinEntity == null && interestIdYo != 0)
+    {
+      _db.RodentInterests.Add(new RodentInterest() {InterestId = interestIdYo, RodentId = rodentId});
+      _db.SaveChanges();
+      Rodent thisRodent = await _db.Rodents
+                                  .Include(rodent => rodent.RodentInterests)
+                                  .ThenInclude(join => join.Interest)
+                                  .FirstOrDefaultAsync(r => r.RodentId == rodentId);
+      return thisRodent;
+    }
+    return NoContent();
+  }
+
+
+
   // Get RodentInterests at Rodent
   [HttpGet("{id}/rodentinterests")]
   public async Task<ActionResult<IEnumerable<RodentInterest>>> GetRodentInterest(int id)
   {
     return await _db.RodentInterests
                     .Where(e => e.RodentId == id)
+                    .Include(e => e.Interest)
                     .ToListAsync();
   }
 

@@ -6,32 +6,20 @@
 @model MouseMingleClient.Models.Rodent
 
 
-<h3> Add a new Rodent to the Shelter: </h3>
+<h3>Add a new Rodent to the Shelter: </h3>
 
 @using (Html.BeginForm())
 {
   <p>@Html.LabelFor(model => model.Name): 
   @Html.TextBoxFor(model => model.Name)</p>
-  <br>
   <p>@Html.LabelFor(model => model.Species): 
   @Html.TextBoxFor(model => model.Species)</p>
-  <br>
   <p>@Html.LabelFor(model => model.Age): 
   @Html.TextBoxFor(model => model.Age)</p>
-
   <p>@Html.LabelFor(model => model.Location): 
   @Html.TextBoxFor(model => model.Location)</p>
-  <br>
-  <br>
-
-  <p>Tell us about yourself!</p>
-  <label>Choose your Interests: </label>
-
-<!-- (check boxes for questionnarie) -->
 
   <input type="submit" value="Create Your Profile" class="btn btn-primary"/>
 }
-
-
 <hr />
 <p>@Html.ActionLink("Back to Home", "Index", "Home")</p>

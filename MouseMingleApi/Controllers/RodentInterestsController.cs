@@ -23,6 +23,7 @@ public class RodentInterestsController : Controller
   public async Task<ActionResult<IEnumerable<RodentInterest>>> Get()
   {
     return await _db.RodentInterests
+                    .Include(join => join.Interest)
                     .ToListAsync();
   }
 
@@ -30,6 +31,7 @@ public class RodentInterestsController : Controller
   public async Task<ActionResult<RodentInterest>> GetRodentInterest(int id)
   {
     RodentInterest entry = await _db.RodentInterests
+                                  .Include(join => join.Interest)
                                   .FirstOrDefaultAsync(r =>r.RodentInterestId == id);
     if (entry == null)
     {
@@ -37,6 +39,7 @@ public class RodentInterestsController : Controller
     }
     return entry;
   }
+  
 
   [HttpPost]
   public async Task<ActionResult<RodentInterest>> Post(RodentInterest rodentInterest)

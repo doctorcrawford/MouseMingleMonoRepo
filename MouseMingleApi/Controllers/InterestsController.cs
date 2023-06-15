@@ -22,7 +22,7 @@ public class InterestsController : Controller
   public async Task<ActionResult<IEnumerable<Interest>>> Get()
   {
     return await _db.Interests
-                    .Include(interest => interest.RodentInterests)
+                    // .Include(interest => interest.RodentInterests)
                     .ToListAsync();
   }
 
@@ -30,7 +30,7 @@ public class InterestsController : Controller
   public async Task<ActionResult<Interest>> GetInterest(int id)
   {
     Interest thisInterest = await _db.Interests
-                                        .Include(r => r.RodentInterests)
+                                        // .Include(r => r.RodentInterests)
                                         .FirstOrDefaultAsync(r =>r.InterestId == id);
     if (thisInterest == null)
     {
@@ -38,6 +38,13 @@ public class InterestsController : Controller
     }
     return thisInterest;
   }
+
+  // [HttpGet("rodent/{id}")]
+  // public async Task<ActionResult<Interest>> GetInterestByRat(int id)
+  // {
+  //   return await _db.Interests
+  //                   .Where(rodent => rodent.RodentId == id)
+  // }
 
   [HttpPost]
   public async Task<ActionResult<Interest>> Post(Interest interest)
