@@ -35,13 +35,13 @@ public class AccountController : Controller
   }
 
   [HttpPost]
-  public ActionResult Register(RegisterViewModel model)
+  public async Task<ActionResult> Register(RegisterViewModel model)
   {
     if (!ModelState.IsValid)
     {
       return View(model);
     }
-    ApplicationUser.Register(model);
+    await ApplicationUser.RegisterAsync(model);
     return RedirectToAction("Index");
   }
 
@@ -51,13 +51,13 @@ public class AccountController : Controller
   }
 
   [HttpPost]
-  public ActionResult Login(LoginViewModel model)
+  public async Task<ActionResult> Login(LoginViewModel model)
   {
     if (!ModelState.IsValid)
     {
       return View(model);
     }
-    var tokenModel = ApplicationUser.Login(model);
+    var tokenModel = await ApplicationUser.LoginAsync(model);
     HttpContext.Session.SetString("jwt", tokenModel.Token);
     return RedirectToAction("Index");
   }
