@@ -31,11 +31,11 @@ else
 
 <hr />
 
-
+<p>@Html.ActionLink("Add Interests", "AddInterest", new {id = Model.RodentId})</p>
 <p>@Html.ActionLink("Back to All Rodents", "Index")</p>
 <p>@Html.ActionLink("Your Profile", "RodentProfile")</p>
 <p>(link) Make A Match? (Y/N)</p>
-
+<p>@Html.ActionLink("Add a rodent match", "AddMatch", new { id = Model.RodentId })</p>
 
 <p>@Html.ActionLink("Edit details", "Edit", new { id = @Model.RodentId}) </p>
 <p>@Html.ActionLink("Delete Rodent", "Delete", new { id = @Model.RodentId})</p>

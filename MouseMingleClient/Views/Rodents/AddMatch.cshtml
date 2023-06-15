@@ -1,0 +1,19 @@
+@{
+  ViewData["Title"] = "Match";
+}
+
+@model MouseMingleClient.Models.Rodent
+
+<h3>Choose a Rodent to match up with on Mouse Mingle! @Html.DisplayFor(model => model.Name)</h3>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.RodentId)
+
+  @Html.Label("Select rodent")
+  @Html.DropDownList("RodentId")
+
+  <input type="submit" value="Save" class="btn btn-primary" />
+}
+<br>
+<p>@Html.ActionLink("Back to Rodents List", "Index")</p>

@@ -34,7 +34,7 @@ public class RodentsController : Controller
   public ActionResult Create(Rodent rodent)
   {
     Rodent.Post(rodent);
-
+    // Rodent.FindMyIdWithMyName(rodent);
     return RedirectToAction("Index");
   }
 
@@ -65,4 +65,24 @@ public class RodentsController : Controller
     Rodent.Delete(id);
     return RedirectToAction("Index");
   }
-}
+
+  public ActionResult AddInterest(int id)
+  {
+    List<Interest> interests = Interest.GetAll();
+    ViewData["allInterests"] = interests;
+    var rodent = Rodent.GetDetails(id);
+    return View(rodent);
+  }
+
+  [HttpPost]
+  public ActionResult AddInterest(Rodent rodent, int[] interestId)
+  {
+    foreach (int item in interestId)
+    {
+      Rodent.AddInterestToRodents(rodent.RodentId, item);
+    }
+    return RedirectToAction("Details", new { id = rodent.RodentId});
+    }
+  }
+
+  // need tag RodentInterestId

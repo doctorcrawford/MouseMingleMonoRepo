@@ -83,6 +83,15 @@ public class ApiHelper
     await client.DeleteAsync(request);
   }
 
+  public static async Task<string> GetIdWithName(string myRodentsName)
+  {
+    var client = new RestClient(HOSTNAME);
+    var request = new RestRequest($"api/v1/rodents/{myRodentsName}", Method.Get);
+    var response = await client.GetAsync(request);
+
+    return response.Content;
+  }
+
   //--------------------------------------------- 
   // ^^^^ Rodent Logic ^^^^
   //--------------------------------------------- 
@@ -176,6 +185,15 @@ public class ApiHelper
     var client = new RestClient(HOSTNAME);
     var request = new RestRequest($"api/v1/rodent/{id}/rodentinterests", Method.Get);
     var response = await client.GetAsync(request);
+
+    return response.Content;
+  }
+
+  public static async Task<string> AddInterestToRodents(int rodentId, int interestIdYo)
+  {
+    var client = new RestClient(HOSTNAME);
+    var request = new RestRequest($"api/v1/rodent/{rodentId}/interests/{interestIdYo}", Method.Post);
+    var response = await client.PostAsync(request);
 
     return response.Content;
   }

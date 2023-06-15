@@ -3,6 +3,27 @@
 @{
   ViewData["Title"] = "My Profile";
 }
+
 @model MouseMingleClient.Models.Rodent
 
-<p>Coming Soon</p>
+<h3>Welcome to your Rodent Profile</h3>
+<hr />
+<p>WIP this rodent profile page!</p>
+
+<p>Name: @Model.Name</p>
+<p>Age: @Model.Age</p>
+<p>Species: @Model.Species</p>
+<p>Location: @Model.Location</p>
+
+<hr />
+<ul>
+    <h3>Interests:</h3>
+    @foreach (RodentInterest join in Model.RodentInterests)
+    {
+        <li>@join.Interest.Description</li>
+    }
+</ul>
+<hr />
+<p>@Html.ActionLink("Add a rodent match", "AddMatch", new { id = Model.RodentId })</p>
+<p>@Html.ActionLink("Back to All Rodents", "Index")</p>
+<p>@Html.ActionLink("Back to Home", "Index", "Home")</p>
