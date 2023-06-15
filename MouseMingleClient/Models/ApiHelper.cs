@@ -196,24 +196,6 @@ public class ApiHelper : ControllerBase
     };
     var tokenModel = await resp.Content.ReadFromJsonAsync<TokenModel>(options, CancellationToken.None);
 
-    // var content = await resp.Content.ReadAsStringAsync();
-    // var content = await resp.Content.ReadAsStreamAsync ();
-    // var tokenModel = JsonSerializer.Deserialize<object>(content);
-
-
     return tokenModel;
-
-    // var parsedJson = await JsonSerializer.DeserializeAsync<DTOGoodAccount>(resp.Content.ReadAsStream());
-
-    // var client = new RestClient(HOSTNAME);
-    // var request = new RestRequest($"api/v1/authenticate/login", Method.Post);
-    // request.AddHeader("Content-Type", "application/json");
-    // request.AddJsonBody(user);
-
-    // var response = await client.ExecuteAsync(request);
-    // Console.WriteLine("Dragon");
-    // Console.WriteLine("Dragon");
-    // Console.WriteLine("Dragon");
-    // return response.Content;
   }
 }
