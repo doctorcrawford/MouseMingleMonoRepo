@@ -21,8 +21,8 @@
             }
             else
             {
-            <ul>
-                <h3>Interests:</h3>
+            <p>Interests:</p>
+                <ul>
                 @foreach (RodentInterest join in Model.RodentInterests)
                 {
                     <li>@join.Interest.Description</li>

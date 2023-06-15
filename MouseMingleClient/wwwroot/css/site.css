@@ -161,6 +161,15 @@ html {
   color: var(--main-light);
 }
 
+.details-links p>a:hover {
+  color: var(--light1);
+}
+
+.details-links {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 /* Login page Accounts/Login */
 .login-main, 
 .register-main {
