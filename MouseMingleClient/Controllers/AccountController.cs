@@ -26,6 +26,7 @@ public class AccountController : Controller
 
   public ActionResult Index()
   {
+    ViewBag.UserName = HttpContext.Session.GetString("username");
     return View();
   }
 
@@ -59,6 +60,7 @@ public class AccountController : Controller
     }
     var tokenModel = await ApplicationUser.LoginAsync(model);
     HttpContext.Session.SetString("jwt", tokenModel.Token);
+    HttpContext.Session.SetString("username", tokenModel.UserName);
     return RedirectToAction("Index");
   }
 

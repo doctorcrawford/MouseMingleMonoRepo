@@ -113,53 +113,90 @@ An dating app for rodents. User can login and see all the available rodents incl
 * Endpoints for **v1.0** are as follows:
 
 ```
-Rodent:
-GET https://localhost:5000/api/v1//rodents
-GET https://localhost:5000/api/v1/rodents/{id}
-PUT https://localhost:5000/api/v1/rodents/{id}
-DELETE https://localhost:5000/api/v1/rodents/{id}
+# Authenticate:
+POST https://localhost:5000/api/v1/authenticate/login
+* This route requires a body:
 
-Interests:
+{
+  "username": "string",
+  "password": "string"
+}
+
+POST https://localhost:5000/api/v1/authenticate/register
+* This route requires a body:
+{
+  "username": "string",
+  "email": "user@example.com",
+  "password": "string"
+}
+
+# Interests:
 GET https://localhost:5000/api/v1/interests/
+POST https://localhost:5000/api/v1/interests/
+* This route requires a body:
+{
+  "interestId": 0,
+  "description": "string"
+}
 GET https://localhost:5000/api/v1/interests/{id}
 PUT https://localhost:5000/api/v1/interests/{id}
 DELETE https://localhost:5000/api/v1/interests/{id}
 
-```
+# RodentInterests:
+GET https://localhost:5000/api/v1/rodentinterests
+POST https://localhost:5000/api/v1/rodentinterests
+* This route requires a body: 
+{
+  "interestId": 0,
+  "description": "string"
+}
+GET https://localhost:5000/api/v1/rodentinterests/{id}
+PUT https://localhost:5000/api/v1/rodents/{id}
+DELETE https://localhost:5000/api/v1/rodents/{id}
 
-* Endpoints for **v2.0** are as follows:
-```
-National Parks (same as v1):
-GET https://localhost:5000/api/v2/natlparks/
-GET https://localhost:5000/api/v2/natlparks/{id}
-PUT https://localhost:5000/api/v2/natlparks/{id}
-DELETE https://localhost:5000/api/v2/natlparks/{id}
-
-States:
-GET https://localhost:5000/api/v2/states/
-GET https://localhost:5000/api/v2/states/{id}
-PUT https://localhost:5000/api/v2/states/{id}
-DELETE https://localhost:5000/api/v2/states/{id}
+# Rodents
+GET https://localhost:5000/api/v1/rodents/
+POST https://localhost:5000/api/v1/rodents/
+* This route requires a body:
+{
+  "rodentId": 0,
+  "species": "string",
+  "name": "string",
+  "age": 0,
+  "location": "string",
+  "profilePic": "string",
+  "upVote": 0,
+  "rodentInterests": [
+    {
+      "rodentInterestId": 0,
+      "rodentId": 0,
+      "interestId": 0,
+      "interest": {
+        "interestId": 0,
+        "description": "string"
+      }
+    }
+  ]
+}
+GET https://localhost:5000/api/v1/rodents/{id}
+PUT https://localhost:5000/api/v1/rodents/{id}
+DELETE https://localhost:5000/api/v1/rodents/{id}
+POST https://localhost:5000/api/v1/rodents/{id}/interests/{interestId}
+* This route requires two parameters, a rodentId and an interestId. It will add interests to a specfic rodent
+GET https://localhost:5000/api/v1/rodents/{id}/rodentinterests
+* This route require one parameter, a rodentId. It will return all the interests associated with a specific rodent. 
 
 ```
 
 * In your terminal, navigate to the project directory and run ```dotnet watch run``` 
-* In your broswer, open https://localhost:7292/swagger/index.html
-* user the GUI to navigate the API
-
-* Query Parameters for a GET Request on **Countries**: 
-
-| Parameter  | Type   | Required     | Description                                      | Sample Url  |
-|----------- |-----   | ---------    | -------------                                    | ----------  |
-| NatlParks | Name | not required | Returns State with a matching name value and includes all National Parks in that state | https://localhost:5001/api/countries |
-
-## Known bugs
+* In your broswer, open https://localhost:5001/swagger/index.html
+* Use the GUI to navigate the API
 
 ## License
 
 MIT License
 
-Copyright (c) 2023 Sarah Reimann
+Copyright (c) 2023 Sarah Reimann, Emma Gerigscott, Kyle Crawford, Thomas McDowell, Eusebie Siebenberg
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -178,60 +215,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-<!-- API appsettings.json -->
-```
-{
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft.AspNetCore": "Warning"
-    }
-  },
-  "AllowedHosts": "*",
-  "ConnectionStrings": {
-    "DefaultConnection": "Server=localhost;Port=3306;database=mouse_mingle_api;uid=root;pwd=epicodus;"
-  }
-}
-```
-
-<!-- API appsettings.Development.json -->
-```
-{
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft": "Trace",
-      "Microsoft.AspNetCore": "Information",
-      "Microsoft.Hosting.Lifetime": "Information"
-    }
-  }
-}
-```
-
-
-
-<!-- Client appsettings.json -->
-```
-{
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft.AspNetCore": "Warning"
-    }
-  },
-  "AllowedHosts": "*"
-}
-```
-
-<!-- Client appsettings.Development.json -->
-```
-{
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft.AspNetCore": "Warning"
-    }
-  }
-}
-```

@@ -7,6 +7,7 @@ public class RodentsController : Controller
   public async Task<IActionResult> Index()
   {
     var token = HttpContext.Session.GetString("jwt");
+    ViewBag.UserName = HttpContext.Session.GetString("username");
     try
     {
       List<Rodent> rodents = await Rodent.GetAllAsync(token);

@@ -1,12 +1,13 @@
 @{
   Layout = "_Layout";
+  string userName = ViewBag.UserName;
 }
 
-<h2>Mouse Mingle Authenticator!</h2>
+<h2>Mouse Mingler User Account</h2>
 <hr />
-@if (User.Identity.IsAuthenticated)
+@if (userName != null)
 {
-  <p>Hello @User.Identity.Name!</p>
+  <h2>Hello <em>@userName!</em></h2>
   @using (Html.BeginForm("LogOff", "Account"))
   {
     <input type = "submit" class="btn btn-primary" value="Log out" />
