@@ -177,7 +177,8 @@ html {
 
 /* Login page Accounts/Login */
 .login-main, 
-.register-main {
+.register-main,
+.account-main {
   background-color: var(--light1);
   width: 555px;
   margin: auto;
@@ -186,13 +187,15 @@ html {
 }
 
 .login-main h2,
-.register-main h2 {
+.register-main h2,
+.account-main h2 {
   font-family: var(--header-font-fam);
   text-align: center;
 }
 
 .login-form,
-.register-form {
+.register-form,
+.account-form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
