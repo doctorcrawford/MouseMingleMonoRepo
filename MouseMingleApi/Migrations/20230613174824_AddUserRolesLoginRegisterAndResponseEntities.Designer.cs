@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MouseMingleApi.Models;
 
@@ -10,9 +11,10 @@ using MouseMingleApi.Models;
 namespace MouseMingle.Migrations
 {
     [DbContext(typeof(MouseMingleApiContext))]
-    partial class MouseMingleApiContextModelSnapshot : ModelSnapshot
+    [Migration("20230613174824_AddUserRolesLoginRegisterAndResponseEntities")]
+    partial class AddUserRolesLoginRegisterAndResponseEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -298,9 +300,6 @@ namespace MouseMingle.Migrations
                     b.Property<string>("Species")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("UpVote")
-                        .HasColumnType("int");
-
                     b.HasKey("RodentId");
 
                     b.ToTable("Rodents");
@@ -312,9 +311,8 @@ namespace MouseMingle.Migrations
                             Age = 43,
                             Location = "Fishermans Warf No.3",
                             Name = "Scorpo Fangoria",
-                            ProfilePic = "/img/scorpo.gif",
-                            Species = "Rat",
-                            UpVote = 0
+                            ProfilePic = "./wwwroot/imgs/scorpo.gif",
+                            Species = "Rat"
                         },
                         new
                         {
@@ -322,9 +320,8 @@ namespace MouseMingle.Migrations
                             Age = 33,
                             Location = "In a van down by the river",
                             Name = "Cadder Jenks",
-                            ProfilePic = "/img/cadder.gif",
-                            Species = "Rat",
-                            UpVote = 0
+                            ProfilePic = "./wwwroot/imgs/cadder.gif",
+                            Species = "Rat"
                         },
                         new
                         {
@@ -332,79 +329,71 @@ namespace MouseMingle.Migrations
                             Age = 18,
                             Location = "hole",
                             Name = "Flippy Twitch",
-                            ProfilePic = "/img/flippy.gif",
-                            Species = "Mouse",
-                            UpVote = 0
+                            ProfilePic = "./wwwroot/imgs/flippy.gif",
+                            Species = "Mouse"
                         },
                         new
                         {
                             RodentId = 4,
                             Age = 23,
-                            Location = "Shoe",
+                            Location = "hole",
                             Name = "Patty Valentine",
-                            ProfilePic = "/img/patty.gif",
-                            Species = "Mouse",
-                            UpVote = 0
+                            ProfilePic = "./wwwroot/imgs/patty.gif",
+                            Species = "Mouse"
                         },
                         new
                         {
                             RodentId = 5,
                             Age = 58,
-                            Location = "Barrel of a gun",
+                            Location = "hole",
                             Name = "Alfred Bello Twitch",
-                            ProfilePic = "/img/alfred.gif",
-                            Species = "Naked Molerat",
-                            UpVote = 0
+                            ProfilePic = "./wwwroot/imgs/alfred.gif",
+                            Species = "Naked Molerat"
                         },
                         new
                         {
                             RodentId = 6,
                             Age = 19,
-                            Location = "Cave underneath a tire",
+                            Location = "hole",
                             Name = "Rubin Carter",
-                            ProfilePic = "/img/rubin.gif",
-                            Species = "Ferret",
-                            UpVote = 0
+                            ProfilePic = "./wwwroot/imgs/rubin.gif",
+                            Species = "Ferret"
                         },
                         new
                         {
                             RodentId = 7,
                             Age = 28,
-                            Location = "Dirt patch",
+                            Location = "hole",
                             Name = "Arthur Dexter Bradley",
-                            ProfilePic = "/img/arthur.gif",
-                            Species = "Capybara",
-                            UpVote = 0
+                            ProfilePic = "./wwwroot/imgs/arthur.gif",
+                            Species = "Capybara"
                         },
                         new
                         {
                             RodentId = 8,
                             Age = 29,
-                            Location = "blade of grass",
+                            Location = "hole",
                             Name = "Squanker Classic",
-                            ProfilePic = "/img/squanker.gif",
-                            Species = "Guinea Pig",
-                            UpVote = 0
+                            ProfilePic = "./wwwroot/imgs/squanker.gif",
+                            Species = "Guinea Pig"
                         },
                         new
                         {
                             RodentId = 9,
                             Age = 88,
-                            Location = "In a nest made of a human hair",
+                            Location = "hole",
                             Name = "Big Daddy Crawford",
-                            ProfilePic = "/img/daddy.gif",
-                            Species = "Myomorpha",
-                            UpVote = 0
+                            ProfilePic = "./wwwroot/imgs/daddy.gif",
+                            Species = "Myomorpha"
                         },
                         new
                         {
                             RodentId = 10,
                             Age = 35,
-                            Location = "Outback Steakhouse",
+                            Location = "hole",
                             Name = "House Mouse",
-                            ProfilePic = "/img/housemouse.gif",
-                            Species = "Mus Musculus",
-                            UpVote = 0
+                            ProfilePic = "./wwwroot/imgs/housemouse.gif",
+                            Species = "Mus Musculus"
                         });
                 });
 
@@ -604,8 +593,8 @@ namespace MouseMingle.Migrations
 
             modelBuilder.Entity("MouseMingleApi.Models.RodentInterest", b =>
                 {
-                    b.HasOne("MouseMingleApi.Models.Interest", "Interest")
-                        .WithMany()
+                    b.HasOne("MouseMingleApi.Models.Interest", null)
+                        .WithMany("RodentInterests")
                         .HasForeignKey("InterestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -615,8 +604,11 @@ namespace MouseMingle.Migrations
                         .HasForeignKey("RodentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
 
-                    b.Navigation("Interest");
+            modelBuilder.Entity("MouseMingleApi.Models.Interest", b =>
+                {
+                    b.Navigation("RodentInterests");
                 });
 
             modelBuilder.Entity("MouseMingleApi.Models.Rodent", b =>

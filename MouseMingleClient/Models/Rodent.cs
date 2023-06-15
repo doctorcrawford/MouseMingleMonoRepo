@@ -19,13 +19,9 @@ public class Rodent
   public int UpVote { get; set; }
   public List<RodentInterest> RodentInterests { get; set; }
 
-  public static List<Rodent> GetAll()
+  public async static Task<List<Rodent>> GetAllAsync(string token)
   {
-    var apiCallTask = ApiHelper.GetAllRodentsAsync();
-    var result = apiCallTask.Result;
-
-    var jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
-    var rodentList = JsonConvert.DeserializeObject<List<Rodent>>(jsonResponse.ToString());
+    var rodentList = await ApiHelper.GetAllRodentsAsync(token);
 
     return rodentList;
   }
