@@ -18,13 +18,9 @@ public class Rodent
   public string ProfilePic { get; set; }
   public List<RodentInterest> RodentInterests { get; set; }
 
-  public static List<Rodent> GetAll(string token)
+  public async static Task<List<Rodent>> GetAllAsync(string token)
   {
-    var apiCallTask = ApiHelper.GetAllRodentsAsync(token);
-    var result = apiCallTask.Result;
-
-    var jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
-    var rodentList = JsonConvert.DeserializeObject<List<Rodent>>(jsonResponse.ToString());
+    var rodentList = await ApiHelper.GetAllRodentsAsync(token);
 
     return rodentList;
   }
@@ -37,13 +33,6 @@ public class Rodent
     var jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
     var rodent = JsonConvert.DeserializeObject<Rodent>(jsonResponse.ToString());
 
-// // Get RodentInterests
-//     var apiCallTaskRodentInterests = ApiHelper.GetRodentInterest(id);
-//     var resultRodentInterest = apiCallTaskRodentInterests.Result;
-//     JArray jsonResponseRodentInterests = JsonConvert.DeserializeObject<JArray>(resultRodentInterest);
-//     List<RodentInterest> rodentInterests = JsonConvert.DeserializeObject<List<RodentInterest>>(jsonResponseRodentInterests.ToString());
-
-    // rodent.RodentInterests = rodentInterests;
     return rodent;
   }
 
