@@ -4,12 +4,19 @@ using MouseMingleClient.Models;
 namespace MouseMingleClient.Controllers;
 public class RodentsController : Controller
 {
-  public IActionResult Index()
+  public async Task<IActionResult> Index()
   {
     var token = HttpContext.Session.GetString("jwt");
-    List<Rodent> rodents = Rodent.GetAll(token);
-
-    return View(rodents);
+    try
+    {
+      List<Rodent> rodents = await Rodent.GetAll(token);
+      return View(rodents);
+    }
+    catch(Exception e)
+    {
+      ViewBag.ErrorMessage = e.Message;
+      return View();
+    }
   }
 
   public IActionResult Details(int id)
@@ -19,7 +26,7 @@ public class RodentsController : Controller
     return View(rodent);
   }
 
-// will need User Id to display join b/w user and their rodent.
+  // will need User Id to display join b/w user and their rodent.
   public IActionResult RodentProfile()
   {
     return View();
