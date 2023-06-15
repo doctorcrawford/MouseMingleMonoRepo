@@ -40,17 +40,17 @@ public class Rodent
     return rodent;
   }
 
-  public static Rodent FindMyIdWithMyName(Rodent rodent)
-  {
-    var myRodentsName = rodent.Name;
-    var apiCallTask = ApiHelper.GetIdWithName(myRodentsName);
-    var result = apiCallTask.Result;
+  // public static Rodent FindMyIdWithMyName(Rodent rodent)
+  // {
+  //   var myRodentsName = rodent.Name;
+  //   var apiCallTask = ApiHelper.GetIdWithName(myRodentsName);
+  //   var result = apiCallTask.Result;
 
-    var jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
-    var myRodent = JsonConvert.DeserializeObject<Rodent>(jsonResponse.ToString());
+  //   var jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
+  //   var myRodent = JsonConvert.DeserializeObject<Rodent>(jsonResponse.ToString());
 
-    return myRodent;
-  }
+  //   return myRodent;
+  // }
 
   public static void Post(Rodent rodent)
   {
@@ -69,9 +69,13 @@ public class Rodent
     ApiHelper.DeleteAsync(id);
   }
 
-  public static async void AddInterestToRodents(int rodentId, int interestIdYo)
+  public static Rodent AddInterestToRodents(int rodentId, int interestIdYo)
   {
+    var apiCallTask =  ApiHelper.AddInterestToRodentsAsync(rodentId, interestIdYo);
+    var result = apiCallTask.Result;
 
-    await ApiHelper.AddInterestToRodents(rodentId, interestIdYo);
+    var jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
+    var rodent = JsonConvert.DeserializeObject<Rodent>(jsonResponse.ToString());
+    return rodent;
   }
 }

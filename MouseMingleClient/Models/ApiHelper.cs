@@ -115,7 +115,7 @@ public class ApiHelper
   public static async Task<string> GetAllInterestsByRat(int id)
   {
     var client = new RestClient(HOSTNAME);
-    var request = new RestRequest($"api/v1/interest/rodent/{id}");
+    var request = new RestRequest($"api/v1/interests/rodents/{id}");
     var response = await client.GetAsync(request);
 
     return response.Content;
@@ -146,7 +146,7 @@ public class ApiHelper
   public static async void Put(int id, string newInterest)
   {
     RestClient client = new RestClient(HOSTNAME);
-    RestRequest request = new RestRequest($"api/v1/interest/{id}", Method.Put);
+    RestRequest request = new RestRequest($"api/v1/interests/{id}", Method.Put);
     request.AddHeader("Content-Type", "application/json");
     request.AddJsonBody(newInterest);
     await client.PutAsync(request);
@@ -183,16 +183,17 @@ public class ApiHelper
   public static async Task<string> GetRodentInterest(int id)
   {
     var client = new RestClient(HOSTNAME);
-    var request = new RestRequest($"api/v1/rodent/{id}/rodentinterests", Method.Get);
+    var request = new RestRequest($"api/v1/rodents/{id}/rodentinterests", Method.Get);
     var response = await client.GetAsync(request);
 
     return response.Content;
   }
 
-  public static async Task<string> AddInterestToRodents(int rodentId, int interestIdYo)
+  public static async Task<string> AddInterestToRodentsAsync(int rodentId, int interestIdYo)
   {
     var client = new RestClient(HOSTNAME);
-    var request = new RestRequest($"api/v1/rodent/{rodentId}/interests/{interestIdYo}", Method.Post);
+    var request = new RestRequest($"api/v1/rodents/{rodentId}/interests/{interestIdYo}", Method.Post);
+    // request.AddHeader("Content-Type", "application/json");
     var response = await client.PostAsync(request);
 
     return response.Content;
