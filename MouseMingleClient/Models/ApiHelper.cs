@@ -177,7 +177,6 @@ public class ApiHelper : ControllerBase
   //---------------------------------------------
 
     // Get All RodentInterests
-<<<<<<< HEAD
   public static async Task<string> GetAllRodentInterests()
   {
     var client = new RestClient(HOSTNAME);
@@ -186,14 +185,7 @@ public class ApiHelper : ControllerBase
 
     return response.Content;
   }
-=======
-  // public static async Task<string> GetAllRodentInterests()
-  // {
-  //   var client = new RestClient(HOSTNAME);
-  //   var request = new RestRequest($"api/v1/interests", Method.Get);
-  //   var response = await client.GetAsync(request);  
-  // }
->>>>>>> 3da6b6da2ba49df8efbecdb0ae696889107fed26
+
     // Get RodentInterest at Rodent
   public static async Task<string> GetRodentInterest(int id)
   {
