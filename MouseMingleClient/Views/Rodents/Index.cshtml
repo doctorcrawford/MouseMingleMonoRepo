@@ -6,21 +6,28 @@
 
 @using MouseMingleClient.Models;
 
-@if (@Model.Count == 0)
+@if (@Model == null)
 {
-  <p>No Rodents Yet</p>
+  <p>Error: @ViewBag.ErrorMessage</p>
 }
 
-
-<div class="profile-container">
-  @foreach (Rodent rodent in Model)
+else
+{
+  @if (@Model.Count == 0)
   {
-    <div class="rodent-profile-card">
-    <h2><strong>@rodent.Name</strong></h2>
-    <p>the @rodent.Species</p>
-    <p><a href="/Rodents/Details/@(rodent.RodentId)">View Details</a></p>
-    <img src=@rodent.ProfilePic />
-    <p><span>Y</span>/<span>N</span></p>
-  </div>
+    <p>No Rodents Yet</p>
   }
-</div>
+
+  <div class="profile-container">
+  @foreach (Rodent rodent in Model)
+    {
+      <div class="rodent-profile-card">
+        <h2><strong>@rodent.Name</strong></h2>
+        <p>the @rodent.Species</p>
+        <p><a href="/Rodents/Details/@(rodent.RodentId)">View Details</a></p>
+        <img src=@rodent.ProfilePic />
+        <p><span>Y</span>/<span>N</span></p>
+      </div>
+    }
+  </div>
+}
