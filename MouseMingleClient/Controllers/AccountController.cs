@@ -58,7 +58,7 @@ public class AccountController : Controller
       return View(model);
     }
     var tokenModel = ApplicationUser.Login(model);
-    HttpContext.Session.SetString("jwt", tokenModel.Token);
+    HttpContext.Session.SetString("Authorization", tokenModel.Token);
     return RedirectToAction("Index");
   }
 

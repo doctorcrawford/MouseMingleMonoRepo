@@ -42,11 +42,9 @@ public class ApiHelper : ControllerBase
   {
     var client = new RestClient(HOSTNAME);
     var request = new RestRequest($"api/v1/rodents", Method.Get);
-    // request.
     request.AddHeader("Authorization", $"Bearer {token}");
     // request.AddHeader("jwt", $"Bearer{token}");
     var response = await client.GetAsync(request);
-
     return response.Content;
   }
 
@@ -178,7 +176,7 @@ public class ApiHelper : ControllerBase
   public static async void RegisterUserAsync(string newUser)
   {
     var client = new RestClient(HOSTNAME);
-    var request = new RestRequest($"api/v1/accounts/", Method.Post);
+    var request = new RestRequest($"api/v1/authenticate/register", Method.Post);
     request.AddHeader("Content-Type", "application/json");
     request.AddJsonBody(newUser);
 

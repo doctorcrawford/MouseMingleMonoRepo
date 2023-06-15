@@ -110,9 +110,4 @@ public class AuthenticateController : Controller
 
     return token;
   }
-
-  // public void SetCookie (string key, string value)
-  // {
-  //   Response.Cookies.Append(key, value);
-  // }
 }

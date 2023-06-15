@@ -19,7 +19,7 @@ public class RodentsController : Controller
     _db = db;
   }
 
-  [Authorize]
+  // [Authorize]
   [HttpGet]
   public async Task<ActionResult<IEnumerable<Rodent>>> GetRodents()
   {

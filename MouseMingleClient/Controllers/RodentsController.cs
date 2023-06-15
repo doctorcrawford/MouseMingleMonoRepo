@@ -6,7 +6,7 @@ public class RodentsController : Controller
 {
   public IActionResult Index()
   {
-    var token = HttpContext.Session.GetString("jwt");
+    var token = HttpContext.Session.GetString("Authorization");
     List<Rodent> rodents = Rodent.GetAll(token);
 
     return View(rodents);
