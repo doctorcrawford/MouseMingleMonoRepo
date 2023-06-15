@@ -209,7 +209,8 @@ html {
 }
 
 .login-input,
-.register-input {
+.register-input,
+.edit-form > input {
   width: 85%;
   display: flex;
   justify-content: space-between;
@@ -217,7 +218,8 @@ html {
 }
 
 .login-btn,
-.register-btn {
+.register-btn,
+.edit-btn {
   align-self: center;
   margin: .4em;
   font-size: 1.2em;
