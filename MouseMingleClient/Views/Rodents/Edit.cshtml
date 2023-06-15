@@ -8,24 +8,26 @@
 
 @using (Html.BeginForm())
 {
-  @Html.HiddenFor(model => model.RodentId)
-  @Html.HiddenFor(model => model.ProfilePic)
-  @Html.HiddenFor(model => model.UpVote)
+  <div class="edit-form">
+    @Html.HiddenFor(model => model.RodentId)
+    @Html.HiddenFor(model => model.ProfilePic)
+    @Html.HiddenFor(model => model.UpVote)
 
-  @Html.LabelFor(model => model.Name)
-  @Html.TextBoxFor(model => model.Name, new { @Value = Model.Name})
-  <br>
-  @Html.LabelFor(model => model.Species)
-  @Html.TextBoxFor(model => model.Species, new { @Value = Model.Species})
-  <br>
-  @Html.LabelFor(model => model.Age)
-  @Html.TextBoxFor(model => model.Age, new { Value = Model.Age})
-  <br>
-  @Html.LabelFor(model => model.Location)
-  @Html.TextBoxFor(model => model.Location, new { Value = Model.Location})
-  <br>
-  <br>
-  <input type="submit" value="Save changes" class="btn btn-primary"/>
+    @Html.LabelFor(model => model.Name)
+    @Html.TextBoxFor(model => model.Name, new { @Value = Model.Name})
+    <br>
+    @Html.LabelFor(model => model.Species)
+    @Html.TextBoxFor(model => model.Species, new { @Value = Model.Species})
+    <br>
+    @Html.LabelFor(model => model.Age)
+    @Html.TextBoxFor(model => model.Age, new { Value = Model.Age})
+    <br>
+    @Html.LabelFor(model => model.Location)
+    @Html.TextBoxFor(model => model.Location, new { Value = Model.Location})
+    <br>
+    <br>
+    <input type="submit" value="Save changes" class="btn btn-primary"/>
+  </div>
 }
 
 <br>

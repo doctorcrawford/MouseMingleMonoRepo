@@ -195,7 +195,8 @@ html {
 
 .login-form,
 .register-form,
-.account-form {
+.account-form,
+.edit-form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;

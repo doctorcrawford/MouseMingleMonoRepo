@@ -203,6 +203,15 @@ GET https://localhost:5000/api/v1/rodents/{id}/rodentinterests
 * Copy and paste the body code listed above and replace fields with their respective values
 * Click send and wait for response at the bottom of the window
 
+# Versioning
+* This feature is half implemented. There is a version 1.0 which contains all of the functionality of the app as it currently stands. There is yet to be any further versions, but the app is set up to allow the creation of further versions.
+
+## Known bugs
+* User cannot log out of account -- Kyle will figure this out
+* Can only save interests to a few rodents, it breaks on some of them
+* Profile link is broken
+* 'Add a rodent' route doesn't exist
+
 ## License
 
 MIT License
