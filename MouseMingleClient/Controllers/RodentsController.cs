@@ -9,7 +9,7 @@ public class RodentsController : Controller
     var token = HttpContext.Session.GetString("jwt");
     try
     {
-      List<Rodent> rodents = await Rodent.GetAll(token);
+      List<Rodent> rodents = await Rodent.GetAllAsync(token);
       return View(rodents);
     }
     catch(Exception e)
