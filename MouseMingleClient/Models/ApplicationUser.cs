@@ -1,27 +1,22 @@
 using Microsoft.AspNetCore.Identity;
 using MouseMingleClient.ViewModels;
-using System.Collections.Generic;
-using System;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
-using RestSharp;
+
 
 namespace MouseMingleClient.Models;
 
 public class ApplicationUser : IdentityUser
 {
-
-  public static void Register(RegisterViewModel newUser)
+  public async static Task RegisterAsync(RegisterViewModel newUser)
   {
     var jsonNewUser = JsonConvert.SerializeObject(newUser);
-    ApiHelper.RegisterUserAsync(jsonNewUser);
+    await ApiHelper.RegisterUserAsync(jsonNewUser);
   }
 
-  public static void Login(LoginViewModel user)
+  public static Task<TokenModel> LoginAsync(LoginViewModel user)
   {
-    var jsonUser = JsonConvert.SerializeObject(user);
-    ApiHelper.LoginUserAsync(jsonUser);
+    return ApiHelper.LoginUserAsync(user);
   }
 }

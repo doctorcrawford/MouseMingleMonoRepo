@@ -1,15 +1,17 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 
 namespace MouseMingleApi.Models;
 
-public class MouseMingleApiContext : DbContext
+public class MouseMingleApiContext : IdentityDbContext<IdentityUser>
 {
   public DbSet<Rodent> Rodents { get; set; }
   public DbSet<Interest> Interests { get; set; }
   public DbSet<RodentInterest> RodentInterests { get; set; }
 
-  public MouseMingleApiContext(DbContextOptions options) : base(options) {}
+  public MouseMingleApiContext(DbContextOptions<MouseMingleApiContext> options) : base(options) {}
 
   protected override void OnModelCreating(ModelBuilder builder)
   {
@@ -63,5 +65,7 @@ public class MouseMingleApiContext : DbContext
           new RodentInterest { RodentInterestId = 19, InterestId = 2, RodentId = 10 },
           new RodentInterest { RodentInterestId = 20, InterestId = 8, RodentId = 10}
         );
+
+        base.OnModelCreating(builder);
   }
 }

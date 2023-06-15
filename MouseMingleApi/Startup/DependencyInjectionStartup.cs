@@ -2,17 +2,25 @@ using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using MouseMingleApi.Models;
 
 namespace MouseMingleApi.Startup;
 
 public static class DependencyInjectionSetup
 {
-  public static IServiceCollection RegisterServices(this IServiceCollection services)
+  public static IServiceCollection RegisterServices(this IServiceCollection services, WebApplicationBuilder builder)
   {
     services.AddEndpointsApiExplorer();
     services.AddSwaggerGen();
 
     services.AddControllers().AddNewtonsoftJson();
+    ConfigurationManager configuration = builder.Configuration;
+
+    services.AddIdentity<IdentityUser, IdentityRole>()
+        .AddEntityFrameworkStores<MouseMingleApiContext>()
+        .AddDefaultTokenProviders();
 
     services.AddAuthentication(options =>
                             {
@@ -28,10 +36,10 @@ public static class DependencyInjectionSetup
                               {
                                 ValidateIssuer = true,
                                 ValidateAudience = true,
-                                ValidAudience = "https://localhost:5001",
-                                ValidIssuer = "https://localhost:5001",
+                                ValidAudience = configuration["JWT:ValidAudience"],
+                                ValidIssuer = configuration["JWT:ValidIssuer"],
                                 ClockSkew = TimeSpan.Zero,
-                                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("CrankItToHeckinHeck"))
+                                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]))
                               };
                             });
 

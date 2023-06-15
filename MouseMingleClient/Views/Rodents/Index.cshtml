@@ -6,34 +6,27 @@
 
 @using MouseMingleClient.Models;
 
-
-@if (@Model.Count == 0)
+@if (@Model == null)
 {
-  <p>No Rodents Yet</p>
+  <p>Error: @ViewBag.ErrorMessage</p>
 }
 
+else
+{
+  @if (@Model.Count == 0)
+  {
+    <p>No Rodents Yet</p>
+  }
 
-<div class="profile-container">
+  <div class="profile-container">
   @foreach (Rodent rodent in Model)
   {
     <div class="rodent-profile-card">
-      <h2><strong>@rodent.Name</strong></h2>
-      <p>the @rodent.Species</p>
-      <p><a href="/Rodents/Details/@(rodent.RodentId)">View Details</a></p>
-      <img src=@rodent.ProfilePic />
-      <div class="upvote-form-container">
-        @using (Html.BeginForm("AddUpVote", "Rodents", FormMethod.Post))
-        {
-          @Html.Hidden("Id", rodent.RodentId)
-          <div class="upvote-form">
-            <p>Up Votes: @rodent.UpVote</p>
-            <div class="upvote-btns">
-              <button class="upvote yes" type="submit" name="vote" value="yes">&#8673;</button>
-              <button class="upvote no" type="submit" name="vote" value="no">&#8675;</button>
-            </div>
-          </div>
-        }
-      </div>
-    </div>
+    <h2><strong>@rodent.Name</strong></h2>
+    <p>the @rodent.Species</p>
+    <p><a href="/Rodents/Details/@(rodent.RodentId)">View Details</a></p>
+    <img src=@rodent.ProfilePic />
+    <p><span>Y</span>/<span>N</span></p>
+  </div>
   }
 </div>

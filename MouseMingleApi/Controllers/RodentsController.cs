@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using System.Threading.Tasks;
 
+using Microsoft.AspNetCore.Authorization;
 
 namespace MouseMingleApi.Controllers;
 
@@ -20,6 +21,7 @@ public class RodentsController : Controller
     _db = db;
   }
 
+  [Authorize]
   [HttpGet]
   public async Task<ActionResult<IEnumerable<Rodent>>> GetRodents()
   {
@@ -43,16 +45,16 @@ public class RodentsController : Controller
     return thisRodent;
   }
 
-// Get My Rodent by Name
-[HttpGet("api/v1/rodents/{myRodentsName}")]
-public async Task<ActionResult<Rodent>> GetRodentName(string myRodentsName)
-{
-  Rodent myRodent = await _db.Rodents
-                                    .Include(r => r.RodentInterests)
-                                    .ThenInclude(join => join.Interest)
-                                    .FirstOrDefaultAsync(r => r.Name == myRodentsName);
-  return myRodent;
-}
+// // Get My Rodent by Name
+// [HttpGet("api/v1/rodents/{myRodentsName}")]
+// public async Task<ActionResult<Rodent>> GetRodentName(string myRodentsName)
+// {
+//   Rodent myRodent = await _db.Rodents
+//                                     .Include(r => r.RodentInterests)
+//                                     .ThenInclude(join => join.Interest)
+//                                     .FirstOrDefaultAsync(r => r.Name == myRodentsName);
+//   return myRodent;
+// }
 
   // Post Join RodentInterets with Interests and Rodents
   [HttpPost("{rodentId}/interests/{interestIdYo}")]

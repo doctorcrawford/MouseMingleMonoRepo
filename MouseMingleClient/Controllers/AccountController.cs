@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using MouseMingleClient.Models;
 using MouseMingleClient.ViewModels;
+// using Microsoft.AspNetCore.Http;
+// using System.Web;
+// using Microsoft.AspNetCore.Http.Features;
+// using System.Security.Claims;
 
 
 namespace MouseMingleClient.Controllers;
@@ -31,13 +35,13 @@ public class AccountController : Controller
   }
 
   [HttpPost]
-  public ActionResult Register(RegisterViewModel model)
+  public async Task<ActionResult> Register(RegisterViewModel model)
   {
     if (!ModelState.IsValid)
     {
       return View(model);
     }
-    ApplicationUser.Register(model);
+    await ApplicationUser.RegisterAsync(model);
     return RedirectToAction("Index");
   }
 
@@ -47,13 +51,14 @@ public class AccountController : Controller
   }
 
   [HttpPost]
-  public ActionResult Login(LoginViewModel model)
+  public async Task<ActionResult> Login(LoginViewModel model)
   {
     if (!ModelState.IsValid)
     {
       return View(model);
     }
-    ApplicationUser.Login(model);
+    var tokenModel = await ApplicationUser.LoginAsync(model);
+    HttpContext.Session.SetString("jwt", tokenModel.Token);
     return RedirectToAction("Index");
   }
 

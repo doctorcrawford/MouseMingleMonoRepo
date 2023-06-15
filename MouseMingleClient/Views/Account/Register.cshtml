@@ -18,6 +18,10 @@
   {
     <div class="register-form">
       <div class="register-input">
+        @Html.LabelFor(user => user.UserName)
+        @Html.TextBoxFor(user=> user.UserName)
+      </div> 
+      <div class="register-input">
         @Html.LabelFor(user => user.Email)
         @Html.TextBoxFor(user=> user.Email)
       </div>      
