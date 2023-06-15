@@ -3,13 +3,15 @@ using RestSharp;
 using MouseMingleClient.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication;
-
+using System.Threading.Tasks;
+using System.Text.Json;
+using System.Net.Http.Headers;
 
 namespace MouseMingleClient.Models;
 
 public class ApiHelper : ControllerBase
 {
-  private const string HOSTNAME = "http://localhost:5000";
+  private const string HOSTNAME = "https://localhost:5001";
   public static async Task<string> GetSearch(string category, string searchParam)
   {
     int rodentAge;
@@ -38,16 +40,14 @@ public class ApiHelper : ControllerBase
   }
 
   // GET. Returns a list of all rodent profiles
-  public static async Task<string> GetAllRodentsAsync(string token)
+  public static async Task<List<Rodent>> GetAllRodentsAsync(string token)
   {
-    var client = new RestClient(HOSTNAME);
-    var request = new RestRequest($"api/v1/rodents", Method.Get);
-    // request.
-    request.AddHeader("Authorization", $"Bearer {token}");
-    // request.AddHeader("jwt", $"Bearer{token}");
-    var response = await client.GetAsync(request);
+    using var httpClient = new HttpClient();
+    httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+    var path = HOSTNAME + "/api/v1/rodents";
+    var response = await httpClient.GetFromJsonAsync<List<Rodent>>(path);
 
-    return response.Content;
+    return response;
   }
 
   // GET. Gets details of a specific rodent (the user's rodent profile)
@@ -55,7 +55,6 @@ public class ApiHelper : ControllerBase
   {
     var client = new RestClient(HOSTNAME);
     var request = new RestRequest($"api/v1/rodents/{id}", Method.Get);
-    // request.AddHeader("Authorization", $"Bearer {token}");
     var response = await client.GetAsync(request);
 
     return response.Content;
@@ -155,12 +154,12 @@ public class ApiHelper : ControllerBase
   // ^^^^ Interest Logic ^^^^
   //---------------------------------------------
 
-    //--------------------------------------------- 
+  //--------------------------------------------- 
   // vvvv RodentInterest Logic vvvv
   //---------------------------------------------
 
 
-    // Get RodentInterest at Rodent
+  // Get RodentInterest at Rodent
   public static async Task<string> GetRodentInterest(int id)
   {
     var client = new RestClient(HOSTNAME);
@@ -175,27 +174,46 @@ public class ApiHelper : ControllerBase
   //---------------------------------------------
 
   // POST. Register new user
-  public static async void RegisterUserAsync(string newUser)
+  public static async Task RegisterUserAsync(string newUser)
   {
     var client = new RestClient(HOSTNAME);
-    var request = new RestRequest($"api/v1/accounts/", Method.Post);
+    var request = new RestRequest($"api/v1/Authenticate/register", Method.Post);
     request.AddHeader("Content-Type", "application/json");
     request.AddJsonBody(newUser);
 
     await client.PostAsync(request);
   }
 
-  public static async Task<string> LoginUserAsync(string user)
+  public static async Task<TokenModel> LoginUserAsync(LoginViewModel user)
   {
-    var client = new RestClient(HOSTNAME);
-    var request = new RestRequest($"api/v1/authenticate/login", Method.Post);
-    request.AddHeader("Content-Type", "application/json");
-    request.AddJsonBody(user);
+    using var httpClient = new HttpClient();
+    var path = HOSTNAME + "/api/v1/authenticate/login";
+    var resp = await httpClient.PostAsJsonAsync<LoginViewModel>(path, user);
 
-    var response = await client.ExecuteAsync(request);
-    Console.WriteLine("Dragon");
-    Console.WriteLine("Dragon");
-    Console.WriteLine("Dragon");
-    return response.Content;
+    var options = new JsonSerializerOptions
+    {
+      PropertyNameCaseInsensitive = true,
+    };
+    var tokenModel = await resp.Content.ReadFromJsonAsync<TokenModel>(options, CancellationToken.None);
+
+    // var content = await resp.Content.ReadAsStringAsync();
+    // var content = await resp.Content.ReadAsStreamAsync ();
+    // var tokenModel = JsonSerializer.Deserialize<object>(content);
+
+
+    return tokenModel;
+
+    // var parsedJson = await JsonSerializer.DeserializeAsync<DTOGoodAccount>(resp.Content.ReadAsStream());
+
+    // var client = new RestClient(HOSTNAME);
+    // var request = new RestRequest($"api/v1/authenticate/login", Method.Post);
+    // request.AddHeader("Content-Type", "application/json");
+    // request.AddJsonBody(user);
+
+    // var response = await client.ExecuteAsync(request);
+    // Console.WriteLine("Dragon");
+    // Console.WriteLine("Dragon");
+    // Console.WriteLine("Dragon");
+    // return response.Content;
   }
 }

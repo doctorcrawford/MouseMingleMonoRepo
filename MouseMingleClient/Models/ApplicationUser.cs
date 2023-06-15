@@ -9,21 +9,14 @@ namespace MouseMingleClient.Models;
 
 public class ApplicationUser : IdentityUser
 {
-  public static void Register(RegisterViewModel newUser)
+  public async static Task RegisterAsync(RegisterViewModel newUser)
   {
     var jsonNewUser = JsonConvert.SerializeObject(newUser);
-    ApiHelper.RegisterUserAsync(jsonNewUser);
+    await ApiHelper.RegisterUserAsync(jsonNewUser);
   }
 
-  public static TokenModel Login(LoginViewModel user)
+  public static Task<TokenModel> LoginAsync(LoginViewModel user)
   {
-    var jsonUser = JsonConvert.SerializeObject(user);
-    var apiCallTask =  ApiHelper.LoginUserAsync(jsonUser);
-    var result = apiCallTask.Result;
-
-    var jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
-    var tokenModel = JsonConvert.DeserializeObject<TokenModel>(jsonResponse.ToString());
-
-    return tokenModel;
+    return ApiHelper.LoginUserAsync(user);
   }
 }
