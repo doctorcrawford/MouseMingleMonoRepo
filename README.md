@@ -84,22 +84,9 @@ An dating app for rodents. User can login and see all the available rodents incl
   "AllowedHosts": "*"
 }
   ```
-  * Create a file called 'appsettings.Development.json' in MouseMingleMonoRepo.Solution/MouseMingleApi directory
-  * Add the following code to the appsettings.Development.json file:
-
-  ```
-  {
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft.AspNetCore": "Warning"
-    }
-  }
-}
-  ```
 
 
-4. Set up the database:
+1. Set up the database:
   * Make sure EF Core Migrations is installed on your computer by running ```dotnet tool install --global dotnet-ef --version 6.0.0```
   * In the production folder of the project (MouseMingleMonoRepo.Solution/MouseMingleApi) run:
   ```
