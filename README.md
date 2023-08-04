@@ -27,7 +27,7 @@ An dating app for rodents. User can login and see all the available rodents incl
 
 ## Instructions to set up database
 1. Clone this repo.
-2. Open your terminal (e.g. Terminal or GitBash) and navigate to this project's directory called "NationalParksApi".
+2. Open your terminal (e.g. Terminal or GitBash) and navigate to this project's directory called "MouseMingleMonoRepo".
 3. Set up the project:
   * Create a file called 'appsettings.json' in MouseMingleMonoRepo.Solution/MouseMIngleApi directory
   * Add the following code to the appsettings.json file:
